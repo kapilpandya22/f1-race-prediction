@@ -1,0 +1,483 @@
+driver,team,position,status,dnf_flag,race,race_order,dnf_rate,reliability
+ALB,Williams,15.0,lapped,0.0,Bahrain Grand Prix,0,,
+ALB,Williams,11.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+ALB,Williams,11.0,lapped,0.0,Australian Grand Prix,2,0.0,1.0
+ALB,Williams,,retired,1.0,Japanese Grand Prix,3,0.0,1.0
+ALB,Williams,12.0,finished,0.0,Chinese Grand Prix,4,0.4153846153846153,0.5846153846153848
+ALB,Williams,18.0,finished,0.0,Miami Grand Prix,5,0.2559241706161137,0.7440758293838863
+ALB,Williams,,retired,1.0,Emilia Romagna Grand Prix,6,0.162406015037594,0.837593984962406
+ALB,Williams,9.0,lapped,0.0,Monaco Grand Prix,7,0.458960660514813,0.541039339485187
+ALB,Williams,,retired,1.0,Canadian Grand Prix,8,0.29976209357652656,0.7002379064234734
+ALB,Williams,18.0,lapped,0.0,Spanish Grand Prix,9,0.5394084815606905,0.46059151843930946
+ALB,Williams,15.0,lapped,0.0,Austrian Grand Prix,10,0.35643257216716934,0.6435674278328307
+ALB,Williams,9.0,finished,0.0,British Grand Prix,11,0.23623207442646735,0.7637679255735327
+ALB,Williams,14.0,lapped,0.0,Hungarian Grand Prix,12,0.15687642814476296,0.843123571855237
+ALB,Williams,12.0,finished,0.0,Belgian Grand Prix,13,0.10431420859941584,0.8956857914005841
+ALB,Williams,14.0,lapped,0.0,Dutch Grand Prix,14,0.06942328732205555,0.9305767126779445
+ALB,Williams,9.0,finished,0.0,Italian Grand Prix,15,0.04622922423427157,0.9537707757657284
+ALB,Williams,7.0,finished,0.0,Azerbaijan Grand Prix,16,0.030795986662536197,0.9692040133374638
+ALB,Williams,,retired,1.0,Singapore Grand Prix,17,0.020520228299259948,0.9794797717007401
+ALB,Williams,16.0,lapped,0.0,United States Grand Prix,18,0.34723455334535014,0.6527654466546499
+ALB,Williams,,retired,1.0,Mexico City Grand Prix,19,0.23143746697634093,0.7685625330236591
+ALB,Williams,,did not start,1.0,Brazilian Grand Prix,20,0.4877020440870615,0.5122979559129385
+ALB,Williams,,retired,1.0,Las Vegas Grand Prix,21,0.6585022724072144,0.3414977275927856
+ALB,Williams,15.0,lapped,0.0,Qatar Grand Prix,22,0.772350064846607,0.22764993515339305
+ALB,,,,0.0,Abu Dhabi Grand Prix,23,0.5148771011572015,0.48512289884279847
+ALO,Aston Martin,9.0,finished,0.0,Bahrain Grand Prix,0,,
+ALO,Aston Martin,5.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+ALO,Aston Martin,8.0,finished,0.0,Australian Grand Prix,2,0.0,1.0
+ALO,Aston Martin,6.0,finished,0.0,Japanese Grand Prix,3,0.0,1.0
+ALO,Aston Martin,7.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+ALO,Aston Martin,9.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+ALO,Aston Martin,19.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+ALO,Aston Martin,11.0,lapped,0.0,Monaco Grand Prix,7,0.0,1.0
+ALO,Aston Martin,6.0,finished,0.0,Canadian Grand Prix,8,0.0,1.0
+ALO,Aston Martin,12.0,lapped,0.0,Spanish Grand Prix,9,0.0,1.0
+ALO,Aston Martin,18.0,lapped,0.0,Austrian Grand Prix,10,0.0,1.0
+ALO,Aston Martin,8.0,finished,0.0,British Grand Prix,11,0.0,1.0
+ALO,Aston Martin,11.0,finished,0.0,Hungarian Grand Prix,12,0.0,1.0
+ALO,Aston Martin,8.0,finished,0.0,Belgian Grand Prix,13,0.0,1.0
+ALO,Aston Martin,10.0,lapped,0.0,Dutch Grand Prix,14,0.0,1.0
+ALO,Aston Martin,11.0,finished,0.0,Italian Grand Prix,15,0.0,1.0
+ALO,Aston Martin,6.0,finished,0.0,Azerbaijan Grand Prix,16,0.0,1.0
+ALO,Aston Martin,8.0,lapped,0.0,Singapore Grand Prix,17,0.0,1.0
+ALO,Aston Martin,13.0,lapped,0.0,United States Grand Prix,18,0.0,1.0
+ALO,Aston Martin,,retired,1.0,Mexico City Grand Prix,19,0.0,1.0
+ALO,Aston Martin,14.0,finished,0.0,Brazilian Grand Prix,20,0.3334336063749179,0.6665663936250821
+ALO,Aston Martin,11.0,finished,0.0,Las Vegas Grand Prix,21,0.22226678355018217,0.7777332164498179
+ALO,Aston Martin,7.0,finished,0.0,Qatar Grand Prix,22,0.14816795185907755,0.8518320481409225
+ALO,,,,0.0,Abu Dhabi Grand Prix,23,0.09877423335589791,0.9012257666441021
+BEA,Ferrari,7.0,finished,0.0,Saudi Arabian Grand Prix,1,,
+BEA,Haas F1 Team,10.0,finished,0.0,Azerbaijan Grand Prix,16,0.0,1.0
+BEA,Haas F1 Team,12.0,finished,0.0,Brazilian Grand Prix,20,0.0,1.0
+BEA,,,,0.0,Abu Dhabi Grand Prix,23,0.0,1.0
+BOT,Kick Sauber,19.0,lapped,0.0,Bahrain Grand Prix,0,,
+BOT,Kick Sauber,17.0,lapped,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+BOT,Kick Sauber,14.0,lapped,0.0,Australian Grand Prix,2,0.0,1.0
+BOT,Kick Sauber,14.0,lapped,0.0,Japanese Grand Prix,3,0.0,1.0
+BOT,Kick Sauber,,retired,1.0,Chinese Grand Prix,4,0.0,1.0
+BOT,Kick Sauber,16.0,finished,0.0,Miami Grand Prix,5,0.3838862559241705,0.6161137440758295
+BOT,Kick Sauber,18.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.24360902255639097,0.7563909774436091
+BOT,Kick Sauber,13.0,lapped,0.0,Monaco Grand Prix,7,0.1573579407479359,0.842642059252064
+BOT,Kick Sauber,13.0,finished,0.0,Canadian Grand Prix,8,0.10277557494052342,0.8972244250594765
+BOT,Kick Sauber,16.0,lapped,0.0,Spanish Grand Prix,9,0.06760210734964271,0.9323978926503573
+BOT,Kick Sauber,16.0,lapped,0.0,Austrian Grand Prix,10,0.04467040068935805,0.955329599310642
+BOT,Kick Sauber,15.0,lapped,0.0,British Grand Prix,11,0.029606108544309232,0.9703938914556908
+BOT,Kick Sauber,16.0,lapped,0.0,Hungarian Grand Prix,12,0.019660753396732702,0.9803392466032673
+BOT,Kick Sauber,15.0,finished,0.0,Belgian Grand Prix,13,0.013073321182172224,0.9869266788178278
+BOT,Kick Sauber,19.0,lapped,0.0,Dutch Grand Prix,14,0.008700568646106181,0.9912994313538939
+BOT,Kick Sauber,16.0,lapped,0.0,Italian Grand Prix,15,0.005793740896201138,0.9942062591037989
+BOT,Kick Sauber,16.0,lapped,0.0,Azerbaijan Grand Prix,16,0.0038595492423021877,0.9961404507576979
+BOT,Kick Sauber,16.0,lapped,0.0,Singapore Grand Prix,17,0.0025717257398550335,0.997428274260145
+BOT,Kick Sauber,17.0,lapped,0.0,United States Grand Prix,18,0.0017139033900974052,0.9982860966099026
+BOT,Kick Sauber,14.0,lapped,0.0,Mexico City Grand Prix,19,0.0011423444338265443,0.9988576555661735
+BOT,Kick Sauber,13.0,finished,0.0,Brazilian Grand Prix,20,0.000761448409533446,0.9992385515904666
+BOT,Kick Sauber,18.0,lapped,0.0,Las Vegas Grand Prix,21,0.0005075813762938446,0.9994924186237062
+BOT,Kick Sauber,11.0,finished,0.0,Qatar Grand Prix,22,0.00033836496720748556,0.9996616350327925
+BOT,,,,0.0,Abu Dhabi Grand Prix,23,0.00022556659392984198,0.9997744334060702
+COL,Williams,12.0,finished,0.0,Italian Grand Prix,15,,
+COL,Williams,8.0,finished,0.0,Azerbaijan Grand Prix,16,0.0,1.0
+COL,Williams,11.0,lapped,0.0,Singapore Grand Prix,17,0.0,1.0
+COL,Williams,10.0,finished,0.0,United States Grand Prix,18,0.0,1.0
+COL,Williams,12.0,lapped,0.0,Mexico City Grand Prix,19,0.0,1.0
+COL,Williams,,retired,1.0,Brazilian Grand Prix,20,0.0,1.0
+COL,Williams,14.0,finished,0.0,Las Vegas Grand Prix,21,0.3654135338345864,0.6345864661654136
+COL,Williams,,retired,1.0,Qatar Grand Prix,22,0.23603691112190384,0.7639630888780962
+COL,,,,0.0,Abu Dhabi Grand Prix,23,0.5010309278350515,0.49896907216494846
+GAS,Alpine,18.0,lapped,0.0,Bahrain Grand Prix,0,,
+GAS,Alpine,,retired,1.0,Saudi Arabian Grand Prix,1,0.0,1.0
+GAS,Alpine,13.0,lapped,0.0,Australian Grand Prix,2,0.6,0.4
+GAS,Alpine,16.0,lapped,0.0,Japanese Grand Prix,3,0.31578947368421056,0.6842105263157894
+GAS,Alpine,13.0,finished,0.0,Chinese Grand Prix,4,0.18461538461538465,0.8153846153846154
+GAS,Alpine,12.0,finished,0.0,Miami Grand Prix,5,0.11374407582938392,0.886255924170616
+GAS,Alpine,16.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.07218045112781958,0.9278195488721804
+GAS,Alpine,10.0,lapped,0.0,Monaco Grand Prix,7,0.04662457503642548,0.9533754249635745
+GAS,Alpine,9.0,finished,0.0,Canadian Grand Prix,8,0.030452022204599548,0.9695479777954005
+GAS,Alpine,9.0,finished,0.0,Spanish Grand Prix,9,0.02003025402952378,0.9799697459704763
+GAS,Alpine,10.0,finished,0.0,Austrian Grand Prix,10,0.013235674278328322,0.9867643257216717
+GAS,Alpine,,did not start,1.0,British Grand Prix,11,0.008772180309424964,0.991227819690575
+GAS,Alpine,,retired,1.0,Hungarian Grand Prix,12,0.3417478121533341,0.6582521878466658
+GAS,Alpine,13.0,finished,0.0,Belgian Grand Prix,13,0.562298448236621,0.437701551763379
+GAS,Alpine,9.0,lapped,0.0,Dutch Grand Prix,14,0.37422137652008725,0.6257786234799128
+GAS,Alpine,15.0,lapped,0.0,Italian Grand Prix,15,0.2491954010784612,0.7508045989215388
+GAS,Alpine,12.0,finished,0.0,Azerbaijan Grand Prix,16,0.16600361297623603,0.833996387023764
+GAS,Alpine,17.0,lapped,0.0,Singapore Grand Prix,17,0.11061285595756971,0.8893871440424302
+GAS,Alpine,12.0,finished,0.0,United States Grand Prix,18,0.07371693873730142,0.9262830612626985
+GAS,Alpine,10.0,lapped,0.0,Mexico City Grand Prix,19,0.049133536424420504,0.9508664635755795
+GAS,Alpine,3.0,finished,0.0,Brazilian Grand Prix,20,0.03275076418047259,0.9672492358195274
+GAS,Alpine,,retired,1.0,Las Vegas Grand Prix,21,0.02183165366066635,0.9781683463393337
+GAS,Alpine,5.0,finished,0.0,Qatar Grand Prix,22,0.347931354674246,0.652068645325754
+GAS,,,,0.0,Abu Dhabi Grand Prix,23,0.23194390141205276,0.7680560985879472
+HAM,Mercedes,7.0,finished,0.0,Bahrain Grand Prix,0,,
+HAM,Mercedes,9.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+HAM,Mercedes,,retired,1.0,Australian Grand Prix,2,0.0,1.0
+HAM,Mercedes,9.0,finished,0.0,Japanese Grand Prix,3,0.47368421052631565,0.5263157894736843
+HAM,Mercedes,9.0,finished,0.0,Chinese Grand Prix,4,0.2769230769230769,0.7230769230769232
+HAM,Mercedes,6.0,finished,0.0,Miami Grand Prix,5,0.17061611374407584,0.8293838862559242
+HAM,Mercedes,6.0,finished,0.0,Emilia Romagna Grand Prix,6,0.10827067669172935,0.8917293233082706
+HAM,Mercedes,7.0,finished,0.0,Monaco Grand Prix,7,0.0699368625546382,0.9300631374453618
+HAM,Mercedes,4.0,finished,0.0,Canadian Grand Prix,8,0.045678033306899304,0.9543219666931007
+HAM,Mercedes,3.0,finished,0.0,Spanish Grand Prix,9,0.030045381044285658,0.9699546189557143
+HAM,Mercedes,4.0,finished,0.0,Austrian Grand Prix,10,0.019853511417492475,0.9801464885825075
+HAM,Mercedes,1.0,finished,0.0,British Grand Prix,11,0.013158270464137443,0.9868417295358626
+HAM,Mercedes,3.0,finished,0.0,Hungarian Grand Prix,12,0.008738112620770094,0.9912618873792299
+HAM,Mercedes,1.0,finished,0.0,Belgian Grand Prix,13,0.0058103649698543255,0.9941896350301457
+HAM,Mercedes,8.0,finished,0.0,Dutch Grand Prix,14,0.0038669193982694165,0.9961330806017306
+HAM,Mercedes,5.0,finished,0.0,Italian Grand Prix,15,0.0025749959538671745,0.9974250040461329
+HAM,Mercedes,9.0,finished,0.0,Azerbaijan Grand Prix,16,0.0017153552188009737,0.998284644781199
+HAM,Mercedes,6.0,finished,0.0,Singapore Grand Prix,17,0.0011429892177133492,0.9988570107822866
+HAM,Mercedes,,retired,1.0,United States Grand Prix,18,0.0007617348400432919,0.9992382651599567
+HAM,Mercedes,4.0,finished,0.0,Mexico City Grand Prix,19,0.33399147415940617,0.6660085258405939
+HAM,Mercedes,10.0,finished,0.0,Brazilian Grand Prix,20,0.22262749243196017,0.7773725075680398
+HAM,Mercedes,2.0,finished,0.0,Las Vegas Grand Prix,21,0.14840344742291875,0.8515965525770812
+HAM,Mercedes,12.0,finished,0.0,Qatar Grand Prix,22,0.09892901900258838,0.9010709809974116
+HAM,,,,0.0,Abu Dhabi Grand Prix,23,0.06594974072345633,0.9340502592765436
+HUL,Haas F1 Team,16.0,lapped,0.0,Bahrain Grand Prix,0,,
+HUL,Haas F1 Team,10.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+HUL,Haas F1 Team,9.0,finished,0.0,Australian Grand Prix,2,0.0,1.0
+HUL,Haas F1 Team,11.0,lapped,0.0,Japanese Grand Prix,3,0.0,1.0
+HUL,Haas F1 Team,10.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+HUL,Haas F1 Team,11.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+HUL,Haas F1 Team,11.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+HUL,Haas F1 Team,,retired,1.0,Monaco Grand Prix,7,0.0,1.0
+HUL,Haas F1 Team,11.0,finished,0.0,Canadian Grand Prix,8,0.3468675654242664,0.6531324345757337
+HUL,Haas F1 Team,11.0,finished,0.0,Spanish Grand Prix,9,0.22815711230504407,0.7718428876949559
+HUL,Haas F1 Team,6.0,finished,0.0,Austrian Grand Prix,10,0.15076260232658337,0.8492373976734167
+HUL,Haas F1 Team,6.0,finished,0.0,British Grand Prix,11,0.09992061633704363,0.9000793836629564
+HUL,Haas F1 Team,13.0,lapped,0.0,Hungarian Grand Prix,12,0.06635504271397286,0.9336449572860271
+HUL,Haas F1 Team,18.0,finished,0.0,Belgian Grand Prix,13,0.044122458989831255,0.9558775410101688
+HUL,Haas F1 Team,11.0,lapped,0.0,Dutch Grand Prix,14,0.029364419180608357,0.9706355808193916
+HUL,Haas F1 Team,17.0,lapped,0.0,Italian Grand Prix,15,0.019553875524678837,0.9804461244753212
+HUL,Haas F1 Team,11.0,finished,0.0,Azerbaijan Grand Prix,16,0.013025978692769882,0.9869740213072301
+HUL,Haas F1 Team,9.0,lapped,0.0,Singapore Grand Prix,17,0.008679574372010737,0.9913204256279893
+HUL,Haas F1 Team,8.0,finished,0.0,United States Grand Prix,18,0.005784423941578742,0.9942155760584213
+HUL,Haas F1 Team,9.0,lapped,0.0,Mexico City Grand Prix,19,0.003855412464164587,0.9961445875358355
+HUL,Haas F1 Team,,disqualified,1.0,Brazilian Grand Prix,20,0.0025698883821753797,0.9974301116178246
+HUL,Haas F1 Team,8.0,finished,0.0,Las Vegas Grand Prix,21,0.33511326247026496,0.664886737529735
+HUL,Haas F1 Team,,retired,1.0,Qatar Grand Prix,22,0.22339390955294156,0.7766060904470584
+HUL,,,,0.0,Abu Dhabi Grand Prix,23,0.4822856748645154,0.5177143251354845
+LAW,RB,9.0,finished,0.0,United States Grand Prix,18,,
+LAW,RB,16.0,lapped,0.0,Mexico City Grand Prix,19,0.0,1.0
+LAW,RB,9.0,finished,0.0,Brazilian Grand Prix,20,0.0,1.0
+LAW,RB,16.0,finished,0.0,Las Vegas Grand Prix,21,0.0,1.0
+LAW,RB,14.0,finished,0.0,Qatar Grand Prix,22,0.0,1.0
+LAW,,,,0.0,Abu Dhabi Grand Prix,23,0.0,1.0
+LEC,Ferrari,4.0,finished,0.0,Bahrain Grand Prix,0,,
+LEC,Ferrari,3.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+LEC,Ferrari,2.0,finished,0.0,Australian Grand Prix,2,0.0,1.0
+LEC,Ferrari,4.0,finished,0.0,Japanese Grand Prix,3,0.0,1.0
+LEC,Ferrari,4.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+LEC,Ferrari,3.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+LEC,Ferrari,3.0,finished,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+LEC,Ferrari,1.0,finished,0.0,Monaco Grand Prix,7,0.0,1.0
+LEC,Ferrari,,retired,1.0,Canadian Grand Prix,8,0.0,1.0
+LEC,Ferrari,5.0,finished,0.0,Spanish Grand Prix,9,0.3422356684575661,0.657764331542434
+LEC,Ferrari,11.0,finished,0.0,Austrian Grand Prix,10,0.22614390348987504,0.773856096510125
+LEC,Ferrari,14.0,lapped,0.0,British Grand Prix,11,0.14988092450556542,0.8501190754944346
+LEC,Ferrari,4.0,finished,0.0,Hungarian Grand Prix,12,0.09953256407095926,0.9004674359290408
+LEC,Ferrari,3.0,finished,0.0,Belgian Grand Prix,13,0.06618368848474686,0.9338163115152531
+LEC,Ferrari,3.0,finished,0.0,Dutch Grand Prix,14,0.044046628770912526,0.9559533712290875
+LEC,Ferrari,1.0,finished,0.0,Italian Grand Prix,15,0.02933081328701825,0.9706691867129817
+LEC,Ferrari,2.0,finished,0.0,Azerbaijan Grand Prix,16,0.01953896803915482,0.9804610319608452
+LEC,Ferrari,5.0,finished,0.0,Singapore Grand Prix,17,0.013019361558016104,0.9869806384419839
+LEC,Ferrari,1.0,finished,0.0,United States Grand Prix,18,0.008676635912368112,0.9913233640876319
+LEC,Ferrari,3.0,finished,0.0,Mexico City Grand Prix,19,0.005783118696246879,0.9942168813037531
+LEC,Ferrari,5.0,finished,0.0,Brazilian Grand Prix,20,0.003854832573263069,0.996145167426737
+LEC,Ferrari,4.0,finished,0.0,Las Vegas Grand Prix,21,0.002569630717487588,0.9974303692825124
+LEC,Ferrari,2.0,finished,0.0,Qatar Grand Prix,22,0.0017129726464878954,0.9982870273535122
+LEC,,,,0.0,Abu Dhabi Grand Prix,23,0.001141930881769825,0.9988580691182302
+MAG,Haas F1 Team,12.0,lapped,0.0,Bahrain Grand Prix,0,,
+MAG,Haas F1 Team,12.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+MAG,Haas F1 Team,10.0,lapped,0.0,Australian Grand Prix,2,0.0,1.0
+MAG,Haas F1 Team,13.0,lapped,0.0,Japanese Grand Prix,3,0.0,1.0
+MAG,Haas F1 Team,16.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+MAG,Haas F1 Team,19.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+MAG,Haas F1 Team,12.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+MAG,Haas F1 Team,,retired,1.0,Monaco Grand Prix,7,0.0,1.0
+MAG,Haas F1 Team,12.0,finished,0.0,Canadian Grand Prix,8,0.3468675654242664,0.6531324345757337
+MAG,Haas F1 Team,17.0,lapped,0.0,Spanish Grand Prix,9,0.22815711230504407,0.7718428876949559
+MAG,Haas F1 Team,8.0,finished,0.0,Austrian Grand Prix,10,0.15076260232658337,0.8492373976734167
+MAG,Haas F1 Team,12.0,finished,0.0,British Grand Prix,11,0.09992061633704363,0.9000793836629564
+MAG,Haas F1 Team,15.0,lapped,0.0,Hungarian Grand Prix,12,0.06635504271397286,0.9336449572860271
+MAG,Haas F1 Team,14.0,finished,0.0,Belgian Grand Prix,13,0.044122458989831255,0.9558775410101688
+MAG,Haas F1 Team,18.0,lapped,0.0,Dutch Grand Prix,14,0.029364419180608357,0.9706355808193916
+MAG,Haas F1 Team,10.0,finished,0.0,Italian Grand Prix,15,0.019553875524678837,0.9804461244753212
+MAG,Haas F1 Team,,retired,1.0,Singapore Grand Prix,17,0.013025978692769882,0.9869740213072301
+MAG,Haas F1 Team,11.0,finished,0.0,United States Grand Prix,18,0.34235157117725906,0.6576484288227409
+MAG,Haas F1 Team,7.0,finished,0.0,Mexico City Grand Prix,19,0.22815711230504404,0.7718428876949559
+MAG,Haas F1 Team,12.0,finished,0.0,Las Vegas Grand Prix,21,0.15207041936289792,0.8479295806371021
+MAG,Haas F1 Team,9.0,finished,0.0,Qatar Grand Prix,22,0.10136503101178074,0.8986349689882193
+MAG,,,,0.0,Abu Dhabi Grand Prix,23,0.06756991190060128,0.9324300880993988
+NOR,McLaren,6.0,finished,0.0,Bahrain Grand Prix,0,,
+NOR,McLaren,8.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+NOR,McLaren,3.0,finished,0.0,Australian Grand Prix,2,0.0,1.0
+NOR,McLaren,5.0,finished,0.0,Japanese Grand Prix,3,0.0,1.0
+NOR,McLaren,2.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+NOR,McLaren,1.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+NOR,McLaren,2.0,finished,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+NOR,McLaren,4.0,finished,0.0,Monaco Grand Prix,7,0.0,1.0
+NOR,McLaren,2.0,finished,0.0,Canadian Grand Prix,8,0.0,1.0
+NOR,McLaren,2.0,finished,0.0,Spanish Grand Prix,9,0.0,1.0
+NOR,McLaren,20.0,lapped,0.0,Austrian Grand Prix,10,0.0,1.0
+NOR,McLaren,3.0,finished,0.0,British Grand Prix,11,0.0,1.0
+NOR,McLaren,2.0,finished,0.0,Hungarian Grand Prix,12,0.0,1.0
+NOR,McLaren,5.0,finished,0.0,Belgian Grand Prix,13,0.0,1.0
+NOR,McLaren,1.0,finished,0.0,Dutch Grand Prix,14,0.0,1.0
+NOR,McLaren,3.0,finished,0.0,Italian Grand Prix,15,0.0,1.0
+NOR,McLaren,4.0,finished,0.0,Azerbaijan Grand Prix,16,0.0,1.0
+NOR,McLaren,1.0,finished,0.0,Singapore Grand Prix,17,0.0,1.0
+NOR,McLaren,4.0,finished,0.0,United States Grand Prix,18,0.0,1.0
+NOR,McLaren,2.0,finished,0.0,Mexico City Grand Prix,19,0.0,1.0
+NOR,McLaren,6.0,finished,0.0,Brazilian Grand Prix,20,0.0,1.0
+NOR,McLaren,6.0,finished,0.0,Las Vegas Grand Prix,21,0.0,1.0
+NOR,McLaren,10.0,finished,0.0,Qatar Grand Prix,22,0.0,1.0
+NOR,,,,0.0,Abu Dhabi Grand Prix,23,0.0,1.0
+OCO,Alpine,17.0,lapped,0.0,Bahrain Grand Prix,0,,
+OCO,Alpine,13.0,lapped,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+OCO,Alpine,16.0,lapped,0.0,Australian Grand Prix,2,0.0,1.0
+OCO,Alpine,15.0,lapped,0.0,Japanese Grand Prix,3,0.0,1.0
+OCO,Alpine,11.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+OCO,Alpine,10.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+OCO,Alpine,14.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+OCO,Alpine,,retired,1.0,Monaco Grand Prix,7,0.0,1.0
+OCO,Alpine,10.0,finished,0.0,Canadian Grand Prix,8,0.3468675654242664,0.6531324345757337
+OCO,Alpine,10.0,finished,0.0,Spanish Grand Prix,9,0.22815711230504407,0.7718428876949559
+OCO,Alpine,12.0,finished,0.0,Austrian Grand Prix,10,0.15076260232658337,0.8492373976734167
+OCO,Alpine,16.0,lapped,0.0,British Grand Prix,11,0.09992061633704363,0.9000793836629564
+OCO,Alpine,18.0,lapped,0.0,Hungarian Grand Prix,12,0.06635504271397286,0.9336449572860271
+OCO,Alpine,9.0,finished,0.0,Belgian Grand Prix,13,0.044122458989831255,0.9558775410101688
+OCO,Alpine,15.0,lapped,0.0,Dutch Grand Prix,14,0.029364419180608357,0.9706355808193916
+OCO,Alpine,14.0,lapped,0.0,Italian Grand Prix,15,0.019553875524678837,0.9804461244753212
+OCO,Alpine,15.0,lapped,0.0,Azerbaijan Grand Prix,16,0.013025978692769882,0.9869740213072301
+OCO,Alpine,13.0,lapped,0.0,Singapore Grand Prix,17,0.008679574372010737,0.9913204256279893
+OCO,Alpine,18.0,lapped,0.0,United States Grand Prix,18,0.005784423941578742,0.9942155760584213
+OCO,Alpine,13.0,lapped,0.0,Mexico City Grand Prix,19,0.003855412464164587,0.9961445875358355
+OCO,Alpine,2.0,finished,0.0,Brazilian Grand Prix,20,0.0025698883821753797,0.9974301116178246
+OCO,Alpine,17.0,lapped,0.0,Las Vegas Grand Prix,21,0.0017130871449917255,0.9982869128550083
+OCO,Alpine,,retired,1.0,Qatar Grand Prix,22,0.001141981764325264,0.9988580182356748
+OCO,,,,0.0,Abu Dhabi Grand Prix,23,0.33412432483066856,0.6658756751693314
+PER,Red Bull Racing,2.0,finished,0.0,Bahrain Grand Prix,0,,
+PER,Red Bull Racing,2.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+PER,Red Bull Racing,5.0,finished,0.0,Australian Grand Prix,2,0.0,1.0
+PER,Red Bull Racing,2.0,finished,0.0,Japanese Grand Prix,3,0.0,1.0
+PER,Red Bull Racing,3.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+PER,Red Bull Racing,4.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+PER,Red Bull Racing,8.0,finished,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+PER,Red Bull Racing,,retired,1.0,Monaco Grand Prix,7,0.0,1.0
+PER,Red Bull Racing,,retired,1.0,Canadian Grand Prix,8,0.3468675654242664,0.6531324345757337
+PER,Red Bull Racing,8.0,finished,0.0,Spanish Grand Prix,9,0.5703927807626101,0.42960721923738987
+PER,Red Bull Racing,7.0,finished,0.0,Austrian Grand Prix,10,0.3769065058164584,0.6230934941835415
+PER,Red Bull Racing,17.0,lapped,0.0,British Grand Prix,11,0.24980154084260905,0.7501984591573909
+PER,Red Bull Racing,7.0,finished,0.0,Hungarian Grand Prix,12,0.16588760678493208,0.8341123932150679
+PER,Red Bull Racing,7.0,finished,0.0,Belgian Grand Prix,13,0.1103061474745781,0.8896938525254219
+PER,Red Bull Racing,6.0,finished,0.0,Dutch Grand Prix,14,0.07341104795152087,0.9265889520484791
+PER,Red Bull Racing,8.0,finished,0.0,Italian Grand Prix,15,0.04888468881169708,0.951115311188303
+PER,Red Bull Racing,,retired,1.0,Azerbaijan Grand Prix,16,0.03256494673192469,0.9674350532680753
+PER,Red Bull Racing,10.0,lapped,0.0,Singapore Grand Prix,17,0.3553709327352752,0.6446290672647248
+PER,Red Bull Racing,7.0,finished,0.0,United States Grand Prix,18,0.23683374821741218,0.7631662517825878
+PER,Red Bull Racing,17.0,lapped,0.0,Mexico City Grand Prix,19,0.15785353805914482,0.8421464619408552
+PER,Red Bull Racing,11.0,finished,0.0,Brazilian Grand Prix,20,0.1052198635850438,0.8947801364149562
+PER,Red Bull Racing,10.0,finished,0.0,Las Vegas Grand Prix,21,0.07013954261808888,0.9298604573819111
+PER,Red Bull Racing,,retired,1.0,Qatar Grand Prix,22,0.046756569776465785,0.9532434302235342
+PER,,,,0.0,Abu Dhabi Grand Prix,23,0.3645326952252971,0.6354673047747029
+PIA,McLaren,8.0,finished,0.0,Bahrain Grand Prix,0,,
+PIA,McLaren,4.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+PIA,McLaren,4.0,finished,0.0,Australian Grand Prix,2,0.0,1.0
+PIA,McLaren,8.0,finished,0.0,Japanese Grand Prix,3,0.0,1.0
+PIA,McLaren,8.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+PIA,McLaren,13.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+PIA,McLaren,4.0,finished,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+PIA,McLaren,2.0,finished,0.0,Monaco Grand Prix,7,0.0,1.0
+PIA,McLaren,5.0,finished,0.0,Canadian Grand Prix,8,0.0,1.0
+PIA,McLaren,7.0,finished,0.0,Spanish Grand Prix,9,0.0,1.0
+PIA,McLaren,2.0,finished,0.0,Austrian Grand Prix,10,0.0,1.0
+PIA,McLaren,4.0,finished,0.0,British Grand Prix,11,0.0,1.0
+PIA,McLaren,1.0,finished,0.0,Hungarian Grand Prix,12,0.0,1.0
+PIA,McLaren,2.0,finished,0.0,Belgian Grand Prix,13,0.0,1.0
+PIA,McLaren,4.0,finished,0.0,Dutch Grand Prix,14,0.0,1.0
+PIA,McLaren,2.0,finished,0.0,Italian Grand Prix,15,0.0,1.0
+PIA,McLaren,1.0,finished,0.0,Azerbaijan Grand Prix,16,0.0,1.0
+PIA,McLaren,3.0,finished,0.0,Singapore Grand Prix,17,0.0,1.0
+PIA,McLaren,5.0,finished,0.0,United States Grand Prix,18,0.0,1.0
+PIA,McLaren,8.0,finished,0.0,Mexico City Grand Prix,19,0.0,1.0
+PIA,McLaren,8.0,finished,0.0,Brazilian Grand Prix,20,0.0,1.0
+PIA,McLaren,7.0,finished,0.0,Las Vegas Grand Prix,21,0.0,1.0
+PIA,McLaren,3.0,finished,0.0,Qatar Grand Prix,22,0.0,1.0
+PIA,,,,0.0,Abu Dhabi Grand Prix,23,0.0,1.0
+RIC,RB,13.0,lapped,0.0,Bahrain Grand Prix,0,,
+RIC,RB,16.0,lapped,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+RIC,RB,12.0,lapped,0.0,Australian Grand Prix,2,0.0,1.0
+RIC,RB,,retired,1.0,Japanese Grand Prix,3,0.0,1.0
+RIC,RB,,retired,1.0,Chinese Grand Prix,4,0.4153846153846153,0.5846153846153848
+RIC,RB,15.0,finished,0.0,Miami Grand Prix,5,0.6398104265402843,0.3601895734597157
+RIC,RB,13.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.406015037593985,0.593984962406015
+RIC,RB,12.0,lapped,0.0,Monaco Grand Prix,7,0.2622632345798932,0.7377367654201068
+RIC,RB,8.0,finished,0.0,Canadian Grand Prix,8,0.17129262490087235,0.8287073750991276
+RIC,RB,15.0,lapped,0.0,Spanish Grand Prix,9,0.1126701789160712,0.8873298210839288
+RIC,RB,9.0,finished,0.0,Austrian Grand Prix,10,0.07445066781559677,0.9255493321844033
+RIC,RB,13.0,lapped,0.0,British Grand Prix,11,0.0493435142405154,0.9506564857594846
+RIC,RB,12.0,lapped,0.0,Hungarian Grand Prix,12,0.03276792232788784,0.9672320776721122
+RIC,RB,10.0,finished,0.0,Belgian Grand Prix,13,0.02178886863695371,0.9782111313630463
+RIC,RB,12.0,lapped,0.0,Dutch Grand Prix,14,0.014500947743510306,0.9854990522564897
+RIC,RB,13.0,finished,0.0,Italian Grand Prix,15,0.009656234827001899,0.990343765172998
+RIC,RB,13.0,finished,0.0,Azerbaijan Grand Prix,16,0.006432582070503647,0.9935674179294963
+RIC,RB,18.0,lapped,0.0,Singapore Grand Prix,17,0.004286209566425056,0.995713790433575
+RIC,,,,0.0,Abu Dhabi Grand Prix,23,0.002856505650162342,0.9971434943498376
+RUS,Mercedes,5.0,finished,0.0,Bahrain Grand Prix,0,,
+RUS,Mercedes,6.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+RUS,Mercedes,,retired,1.0,Australian Grand Prix,2,0.0,1.0
+RUS,Mercedes,7.0,finished,0.0,Japanese Grand Prix,3,0.47368421052631565,0.5263157894736843
+RUS,Mercedes,6.0,finished,0.0,Chinese Grand Prix,4,0.2769230769230769,0.7230769230769232
+RUS,Mercedes,8.0,finished,0.0,Miami Grand Prix,5,0.17061611374407584,0.8293838862559242
+RUS,Mercedes,7.0,finished,0.0,Emilia Romagna Grand Prix,6,0.10827067669172935,0.8917293233082706
+RUS,Mercedes,5.0,finished,0.0,Monaco Grand Prix,7,0.0699368625546382,0.9300631374453618
+RUS,Mercedes,3.0,finished,0.0,Canadian Grand Prix,8,0.045678033306899304,0.9543219666931007
+RUS,Mercedes,4.0,finished,0.0,Spanish Grand Prix,9,0.030045381044285658,0.9699546189557143
+RUS,Mercedes,1.0,finished,0.0,Austrian Grand Prix,10,0.019853511417492475,0.9801464885825075
+RUS,Mercedes,,retired,1.0,British Grand Prix,11,0.013158270464137443,0.9868417295358626
+RUS,Mercedes,8.0,finished,0.0,Hungarian Grand Prix,12,0.34466051636025746,0.6553394836397426
+RUS,Mercedes,,disqualified,1.0,Belgian Grand Prix,13,0.22918031360587493,0.770819686394125
+RUS,Mercedes,7.0,finished,0.0,Dutch Grand Prix,14,0.48700337872921595,0.512996621270784
+RUS,Mercedes,7.0,finished,0.0,Italian Grand Prix,15,0.3242973541958485,0.6757026458041515
+RUS,Mercedes,3.0,finished,0.0,Azerbaijan Grand Prix,16,0.2160334108982803,0.7839665891017197
+RUS,Mercedes,4.0,finished,0.0,Singapore Grand Prix,17,0.1439491113072024,0.8560508886927976
+RUS,Mercedes,6.0,finished,0.0,United States Grand Prix,18,0.09593358500383095,0.904066414996169
+RUS,Mercedes,5.0,finished,0.0,Mexico City Grand Prix,19,0.06394129183671415,0.9360587081632858
+RUS,Mercedes,4.0,finished,0.0,Brazilian Grand Prix,20,0.04262111630332746,0.9573788836966726
+RUS,Mercedes,1.0,finished,0.0,Las Vegas Grand Prix,21,0.028411228655239228,0.9715887713447607
+RUS,Mercedes,4.0,finished,0.0,Qatar Grand Prix,22,0.01893955314603409,0.9810604468539659
+RUS,,,,0.0,Abu Dhabi Grand Prix,23,0.012625806178937138,0.9873741938210628
+SAI,Ferrari,3.0,finished,0.0,Bahrain Grand Prix,0,,
+SAI,Ferrari,1.0,finished,0.0,Australian Grand Prix,2,0.0,1.0
+SAI,Ferrari,3.0,finished,0.0,Japanese Grand Prix,3,0.0,1.0
+SAI,Ferrari,5.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+SAI,Ferrari,5.0,finished,0.0,Miami Grand Prix,5,0.0,1.0
+SAI,Ferrari,5.0,finished,0.0,Emilia Romagna Grand Prix,6,0.0,1.0
+SAI,Ferrari,3.0,finished,0.0,Monaco Grand Prix,7,0.0,1.0
+SAI,Ferrari,,retired,1.0,Canadian Grand Prix,8,0.0,1.0
+SAI,Ferrari,6.0,finished,0.0,Spanish Grand Prix,9,0.3468675654242664,0.6531324345757337
+SAI,Ferrari,3.0,finished,0.0,Austrian Grand Prix,10,0.22815711230504407,0.7718428876949559
+SAI,Ferrari,5.0,finished,0.0,British Grand Prix,11,0.15076260232658337,0.8492373976734167
+SAI,Ferrari,6.0,finished,0.0,Hungarian Grand Prix,12,0.09992061633704363,0.9000793836629564
+SAI,Ferrari,6.0,finished,0.0,Belgian Grand Prix,13,0.06635504271397286,0.9336449572860271
+SAI,Ferrari,5.0,finished,0.0,Dutch Grand Prix,14,0.044122458989831255,0.9558775410101688
+SAI,Ferrari,4.0,finished,0.0,Italian Grand Prix,15,0.029364419180608357,0.9706355808193916
+SAI,Ferrari,,retired,1.0,Azerbaijan Grand Prix,16,0.019553875524678837,0.9804461244753212
+SAI,Ferrari,7.0,finished,0.0,Singapore Grand Prix,17,0.34686756542426644,0.6531324345757336
+SAI,Ferrari,2.0,finished,0.0,United States Grand Prix,18,0.23112757224217634,0.7688724277578236
+SAI,Ferrari,1.0,finished,0.0,Mexico City Grand Prix,19,0.15403288285055566,0.8459671171494443
+SAI,Ferrari,,retired,1.0,Brazilian Grand Prix,20,0.10266541706332016,0.8973345829366799
+SAI,Ferrari,3.0,finished,0.0,Las Vegas Grand Prix,21,0.4018669231768302,0.5981330768231699
+SAI,Ferrari,6.0,finished,0.0,Qatar Grand Prix,22,0.2678844205322469,0.7321155794677531
+SAI,,,,0.0,Abu Dhabi Grand Prix,23,0.17857767720050455,0.8214223227994955
+SAR,Williams,20.0,lapped,0.0,Bahrain Grand Prix,0,,
+SAR,Williams,14.0,lapped,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+SAR,Williams,17.0,lapped,0.0,Japanese Grand Prix,3,0.0,1.0
+SAR,Williams,17.0,finished,0.0,Chinese Grand Prix,4,0.0,1.0
+SAR,Williams,,retired,1.0,Miami Grand Prix,5,0.0,1.0
+SAR,Williams,17.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.3838862559241705,0.6161137440758295
+SAR,Williams,15.0,lapped,0.0,Monaco Grand Prix,7,0.24360902255639097,0.7563909774436091
+SAR,Williams,,retired,1.0,Canadian Grand Prix,8,0.1573579407479359,0.842642059252064
+SAR,Williams,20.0,lapped,0.0,Spanish Grand Prix,9,0.44964314036478975,0.5503568596352102
+SAR,Williams,19.0,lapped,0.0,Austrian Grand Prix,10,0.29575921965468677,0.7042407803453132
+SAR,Williams,11.0,finished,0.0,British Grand Prix,11,0.19543300301594144,0.8045669969840585
+SAR,Williams,17.0,lapped,0.0,Hungarian Grand Prix,12,0.12952672488135286,0.8704732751186471
+SAR,Williams,17.0,finished,0.0,Belgian Grand Prix,13,0.08601579611070555,0.9139842038892945
+SAR,Williams,16.0,lapped,0.0,Dutch Grand Prix,14,0.05719578017200347,0.9428042198279966
+SAR,,,,0.0,Abu Dhabi Grand Prix,23,0.03806498782671453,0.9619350121732855
+STR,Aston Martin,10.0,finished,0.0,Bahrain Grand Prix,0,,
+STR,Aston Martin,,retired,1.0,Saudi Arabian Grand Prix,1,0.0,1.0
+STR,Aston Martin,6.0,finished,0.0,Australian Grand Prix,2,0.6,0.4
+STR,Aston Martin,12.0,lapped,0.0,Japanese Grand Prix,3,0.31578947368421056,0.6842105263157894
+STR,Aston Martin,15.0,finished,0.0,Chinese Grand Prix,4,0.18461538461538465,0.8153846153846154
+STR,Aston Martin,17.0,finished,0.0,Miami Grand Prix,5,0.11374407582938392,0.886255924170616
+STR,Aston Martin,9.0,finished,0.0,Emilia Romagna Grand Prix,6,0.07218045112781958,0.9278195488721804
+STR,Aston Martin,14.0,lapped,0.0,Monaco Grand Prix,7,0.04662457503642548,0.9533754249635745
+STR,Aston Martin,7.0,finished,0.0,Canadian Grand Prix,8,0.030452022204599548,0.9695479777954005
+STR,Aston Martin,14.0,lapped,0.0,Spanish Grand Prix,9,0.02003025402952378,0.9799697459704763
+STR,Aston Martin,13.0,lapped,0.0,Austrian Grand Prix,10,0.013235674278328322,0.9867643257216717
+STR,Aston Martin,7.0,finished,0.0,British Grand Prix,11,0.008772180309424964,0.991227819690575
+STR,Aston Martin,10.0,finished,0.0,Hungarian Grand Prix,12,0.00582540841384673,0.9941745915861533
+STR,Aston Martin,11.0,finished,0.0,Belgian Grand Prix,13,0.003873576646569551,0.9961264233534305
+STR,Aston Martin,13.0,lapped,0.0,Dutch Grand Prix,14,0.0025779462655129443,0.997422053734487
+STR,Aston Martin,19.0,lapped,0.0,Italian Grand Prix,15,0.001716663969244783,0.9982833360307553
+STR,Aston Martin,,retired,1.0,Azerbaijan Grand Prix,16,0.0011435701458673156,0.9988564298541327
+STR,Aston Martin,14.0,lapped,0.0,Singapore Grand Prix,17,0.3344339896170573,0.6655660103829427
+STR,Aston Martin,15.0,lapped,0.0,United States Grand Prix,18,0.22288051159016087,0.7771194884098391
+STR,Aston Martin,11.0,lapped,0.0,Mexico City Grand Prix,19,0.14855347932357085,0.8514465206764291
+STR,Aston Martin,,did not start,1.0,Brazilian Grand Prix,20,0.09902075697317084,0.9009792430268292
+STR,Aston Martin,15.0,finished,0.0,Las Vegas Grand Prix,21,0.39940739456274765,0.6005926054372523
+STR,Aston Martin,,retired,1.0,Qatar Grand Prix,22,0.2662537994408489,0.7337462005591511
+STR,,,,0.0,Abu Dhabi Grand Prix,23,0.5108576616692104,0.4891423383307896
+TSU,RB,14.0,lapped,0.0,Bahrain Grand Prix,0,,
+TSU,RB,15.0,lapped,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+TSU,RB,7.0,finished,0.0,Australian Grand Prix,2,0.0,1.0
+TSU,RB,10.0,lapped,0.0,Japanese Grand Prix,3,0.0,1.0
+TSU,RB,,retired,1.0,Chinese Grand Prix,4,0.0,1.0
+TSU,RB,7.0,finished,0.0,Miami Grand Prix,5,0.3838862559241705,0.6161137440758295
+TSU,RB,10.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.24360902255639097,0.7563909774436091
+TSU,RB,8.0,lapped,0.0,Monaco Grand Prix,7,0.1573579407479359,0.842642059252064
+TSU,RB,14.0,finished,0.0,Canadian Grand Prix,8,0.10277557494052342,0.8972244250594765
+TSU,RB,19.0,lapped,0.0,Spanish Grand Prix,9,0.06760210734964271,0.9323978926503573
+TSU,RB,14.0,lapped,0.0,Austrian Grand Prix,10,0.04467040068935805,0.955329599310642
+TSU,RB,10.0,finished,0.0,British Grand Prix,11,0.029606108544309232,0.9703938914556908
+TSU,RB,9.0,finished,0.0,Hungarian Grand Prix,12,0.019660753396732702,0.9803392466032673
+TSU,RB,16.0,finished,0.0,Belgian Grand Prix,13,0.013073321182172224,0.9869266788178278
+TSU,RB,17.0,lapped,0.0,Dutch Grand Prix,14,0.008700568646106181,0.9912994313538939
+TSU,RB,,retired,1.0,Italian Grand Prix,15,0.005793740896201138,0.9942062591037989
+TSU,RB,,retired,1.0,Azerbaijan Grand Prix,16,0.33770113597379875,0.6622988640262013
+TSU,RB,12.0,lapped,0.0,Singapore Grand Prix,17,0.5586917204152689,0.44130827958473107
+TSU,RB,14.0,lapped,0.0,United States Grand Prix,18,0.37233505066253964,0.6276649493374604
+TSU,RB,,retired,1.0,Mexico City Grand Prix,19,0.24816735593171546,0.7518326440682845
+TSU,RB,7.0,finished,0.0,Brazilian Grand Prix,20,0.49885362583379367,0.5011463741662063
+TSU,RB,9.0,finished,0.0,Las Vegas Grand Prix,21,0.33253573951915866,0.6674642604808414
+TSU,RB,13.0,finished,0.0,Qatar Grand Prix,22,0.22167567576903943,0.7783243242309605
+TSU,,,,0.0,Abu Dhabi Grand Prix,23,0.14777719913792553,0.8522228008620745
+VER,Red Bull Racing,1.0,finished,0.0,Bahrain Grand Prix,0,,
+VER,Red Bull Racing,1.0,finished,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+VER,Red Bull Racing,,retired,1.0,Australian Grand Prix,2,0.0,1.0
+VER,Red Bull Racing,1.0,finished,0.0,Japanese Grand Prix,3,0.47368421052631565,0.5263157894736843
+VER,Red Bull Racing,1.0,finished,0.0,Chinese Grand Prix,4,0.2769230769230769,0.7230769230769232
+VER,Red Bull Racing,2.0,finished,0.0,Miami Grand Prix,5,0.17061611374407584,0.8293838862559242
+VER,Red Bull Racing,1.0,finished,0.0,Emilia Romagna Grand Prix,6,0.10827067669172935,0.8917293233082706
+VER,Red Bull Racing,6.0,finished,0.0,Monaco Grand Prix,7,0.0699368625546382,0.9300631374453618
+VER,Red Bull Racing,1.0,finished,0.0,Canadian Grand Prix,8,0.045678033306899304,0.9543219666931007
+VER,Red Bull Racing,1.0,finished,0.0,Spanish Grand Prix,9,0.030045381044285658,0.9699546189557143
+VER,Red Bull Racing,5.0,finished,0.0,Austrian Grand Prix,10,0.019853511417492475,0.9801464885825075
+VER,Red Bull Racing,2.0,finished,0.0,British Grand Prix,11,0.013158270464137443,0.9868417295358626
+VER,Red Bull Racing,5.0,finished,0.0,Hungarian Grand Prix,12,0.008738112620770094,0.9912618873792299
+VER,Red Bull Racing,4.0,finished,0.0,Belgian Grand Prix,13,0.0058103649698543255,0.9941896350301457
+VER,Red Bull Racing,2.0,finished,0.0,Dutch Grand Prix,14,0.0038669193982694165,0.9961330806017306
+VER,Red Bull Racing,6.0,finished,0.0,Italian Grand Prix,15,0.0025749959538671745,0.9974250040461329
+VER,Red Bull Racing,5.0,finished,0.0,Azerbaijan Grand Prix,16,0.0017153552188009737,0.998284644781199
+VER,Red Bull Racing,2.0,finished,0.0,Singapore Grand Prix,17,0.0011429892177133492,0.9988570107822866
+VER,Red Bull Racing,3.0,finished,0.0,United States Grand Prix,18,0.0007617348400432919,0.9992382651599567
+VER,Red Bull Racing,6.0,finished,0.0,Mexico City Grand Prix,19,0.0005077086372562424,0.9994922913627438
+VER,Red Bull Racing,1.0,finished,0.0,Brazilian Grand Prix,20,0.0003384215153481985,0.9996615784846518
+VER,Red Bull Racing,5.0,finished,0.0,Las Vegas Grand Prix,21,0.0002255917227972645,0.9997744082772028
+VER,Red Bull Racing,1.0,finished,0.0,Qatar Grand Prix,22,0.00015038442986999376,0.99984961557013
+VER,,,,0.0,Abu Dhabi Grand Prix,23,0.00010025181952437433,0.9998997481804757
+ZHO,Kick Sauber,11.0,lapped,0.0,Bahrain Grand Prix,0,,
+ZHO,Kick Sauber,18.0,lapped,0.0,Saudi Arabian Grand Prix,1,0.0,1.0
+ZHO,Kick Sauber,15.0,lapped,0.0,Australian Grand Prix,2,0.0,1.0
+ZHO,Kick Sauber,,retired,1.0,Japanese Grand Prix,3,0.0,1.0
+ZHO,Kick Sauber,14.0,finished,0.0,Chinese Grand Prix,4,0.4153846153846153,0.5846153846153848
+ZHO,Kick Sauber,14.0,finished,0.0,Miami Grand Prix,5,0.2559241706161137,0.7440758293838863
+ZHO,Kick Sauber,15.0,lapped,0.0,Emilia Romagna Grand Prix,6,0.162406015037594,0.837593984962406
+ZHO,Kick Sauber,16.0,lapped,0.0,Monaco Grand Prix,7,0.10490529383195729,0.8950947061680428
+ZHO,Kick Sauber,15.0,lapped,0.0,Canadian Grand Prix,8,0.06851704996034895,0.9314829500396511
+ZHO,Kick Sauber,13.0,lapped,0.0,Spanish Grand Prix,9,0.045068071566428475,0.9549319284335716
+ZHO,Kick Sauber,17.0,lapped,0.0,Austrian Grand Prix,10,0.029780267126238703,0.9702197328737613
+ZHO,Kick Sauber,18.0,lapped,0.0,British Grand Prix,11,0.019737405696206155,0.9802625943037938
+ZHO,Kick Sauber,19.0,lapped,0.0,Hungarian Grand Prix,12,0.013107168931155135,0.9868928310688448
+ZHO,Kick Sauber,,retired,1.0,Belgian Grand Prix,13,0.008715547454781484,0.9912844525452185
+ZHO,Kick Sauber,20.0,lapped,0.0,Dutch Grand Prix,14,0.34027946632652095,0.659720533673479
+ZHO,Kick Sauber,18.0,lapped,0.0,Italian Grand Prix,15,0.22659335732909552,0.7734066426709045
+ZHO,Kick Sauber,14.0,finished,0.0,Azerbaijan Grand Prix,16,0.1509470713755333,0.8490529286244667
+ZHO,Kick Sauber,15.0,lapped,0.0,Singapore Grand Prix,17,0.10058026065775474,0.8994197393422453
+ZHO,Kick Sauber,19.0,lapped,0.0,United States Grand Prix,18,0.06703080621961024,0.9329691937803898
+ZHO,Kick Sauber,15.0,lapped,0.0,Mexico City Grand Prix,19,0.04467712055550907,0.9553228794444909
+ZHO,Kick Sauber,15.0,finished,0.0,Brazilian Grand Prix,20,0.029780267126238706,0.9702197328737613
+ZHO,Kick Sauber,13.0,finished,0.0,Las Vegas Grand Prix,21,0.01985152084511725,0.9801484791548828
+ZHO,Kick Sauber,8.0,finished,0.0,Qatar Grand Prix,22,0.013233462679072437,0.9867665373209276
+ZHO,,,,0.0,Abu Dhabi Grand Prix,23,0.008821915362726163,0.9911780846372739

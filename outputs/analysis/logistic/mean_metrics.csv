@@ -1,0 +1,12 @@
+metric,value
+accuracy,0.890909090909091
+f1,0.6
+auc,0.9228070175438596
+log_loss,0.26920114099855424
+brier,0.08313830028122335
+mrr,0.47904761904761894
+top3_accuracy,0.6
+top3_recall,0.6
+top3_precision,0.6
+season,2026.0
+has_ground_truth,1.0

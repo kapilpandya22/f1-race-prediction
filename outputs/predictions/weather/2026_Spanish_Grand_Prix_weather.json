@@ -1,0 +1,11 @@
+{
+    "rain_probability": 0.35,
+    "wet_track_flag": 0,
+    "temperature": 25.18,
+    "humidity": 63.0,
+    "wind_speed": 18.92,
+    "temperature_vs_baseline": -1.8200000000000003,
+    "humidity_vs_baseline": 8.0,
+    "wind_speed_vs_baseline": 3.9200000000000017,
+    "rain_probability_vs_baseline": 0.19999999999999998
+}

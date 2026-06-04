@@ -1,0 +1,23 @@
+driver,team,points,wins,podiums,dnfs,races
+ANT,Mercedes,118.0,4,5,0,5
+RUS,Mercedes,67.0,1,2,1,5
+HAM,Ferrari,61.0,0,2,0,5
+LEC,Ferrari,58.0,0,2,0,5
+NOR,McLaren,38.0,0,1,2,5
+VER,Red Bull Racing,37.0,0,1,1,5
+PIA,McLaren,33.0,0,2,2,5
+GAS,Alpine F1 Team,19.0,0,0,1,5
+BEA,Haas F1 Team,17.0,0,0,1,5
+COL,Alpine F1 Team,15.0,0,0,0,5
+LAW,RB F1 Team,14.0,0,0,1,5
+HAD,Red Bull Racing,14.0,0,0,2,5
+SAI,Williams,6.0,0,0,0,5
+LIN,RB F1 Team,4.0,0,0,1,5
+BOR,Audi,2.0,0,0,1,5
+OCO,Haas F1 Team,1.0,0,0,0,5
+ALB,Williams,1.0,0,0,2,5
+ALO,Aston Martin,0.0,0,0,3,5
+BOT,Cadillac F1 Team,0.0,0,0,1,5
+HUL,Audi,0.0,0,0,2,5
+PER,Cadillac F1 Team,0.0,0,0,1,5
+STR,Aston Martin,0.0,0,0,2,5

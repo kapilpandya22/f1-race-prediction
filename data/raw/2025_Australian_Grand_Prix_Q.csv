@@ -1,0 +1,21 @@
+driver,driver_number,team,position,q1,q2,q3
+NOR,4,McLaren,1.0,0 days 00:01:15.912000,0 days 00:01:15.415000,0 days 00:01:15.096000
+PIA,81,McLaren,2.0,0 days 00:01:16.062000,0 days 00:01:15.468000,0 days 00:01:15.180000
+VER,1,Red Bull Racing,3.0,0 days 00:01:16.018000,0 days 00:01:15.565000,0 days 00:01:15.481000
+RUS,63,Mercedes,4.0,0 days 00:01:15.971000,0 days 00:01:15.798000,0 days 00:01:15.546000
+TSU,22,Racing Bulls,5.0,0 days 00:01:16.225000,0 days 00:01:16.009000,0 days 00:01:15.670000
+ALB,23,Williams,6.0,0 days 00:01:16.245000,0 days 00:01:16.017000,0 days 00:01:15.737000
+LEC,16,Ferrari,7.0,0 days 00:01:16.029000,0 days 00:01:15.827000,0 days 00:01:15.755000
+HAM,44,Ferrari,8.0,0 days 00:01:16.213000,0 days 00:01:15.919000,0 days 00:01:15.973000
+GAS,10,Alpine,9.0,0 days 00:01:16.328000,0 days 00:01:16.112000,0 days 00:01:15.980000
+SAI,55,Williams,10.0,0 days 00:01:16.360000,0 days 00:01:15.931000,0 days 00:01:16.062000
+HAD,6,Racing Bulls,11.0,0 days 00:01:16.354000,0 days 00:01:16.175000,
+ALO,14,Aston Martin,12.0,0 days 00:01:16.288000,0 days 00:01:16.453000,
+STR,18,Aston Martin,13.0,0 days 00:01:16.369000,0 days 00:01:16.483000,
+DOO,7,Alpine,14.0,0 days 00:01:16.315000,0 days 00:01:16.863000,
+BOR,5,Kick Sauber,15.0,0 days 00:01:16.516000,0 days 00:01:17.520000,
+ANT,12,Mercedes,16.0,0 days 00:01:16.525000,,
+HUL,27,Kick Sauber,17.0,0 days 00:01:16.579000,,
+LAW,30,Red Bull Racing,18.0,0 days 00:01:17.094000,,
+OCO,31,Haas F1 Team,19.0,0 days 00:01:17.147000,,
+BEA,87,Haas F1 Team,20.0,,,

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 2026 — Race Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#e8002d;--red2:#ff1e47;
+  --panel:rgba(4,4,12,0.84);
+  --cyan:#00d4ff;--gold:#ffd700;--green:#00e676;
+  --silver:#c0cce0;--muted:#38405e;--text:#f0f4ff;
+  --font-d:'Formula1','Titillium Web',sans-serif;
+  --font-b:'Titillium Web',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;min-height:100%;background:#000;overflow-x:hidden}
+body{color:var(--text);font-family:var(--font-b)}
+
+#vid-bg{position:fixed;inset:0;z-index:0;background:#000;overflow:hidden;pointer-events:none}
+#vid-bg video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover}
+
+.ov{position:fixed;inset:0;pointer-events:none}
+.ov-dark  {z-index:1;background:rgba(0,0,0,.52)}
+.ov-vign  {z-index:2;background:radial-gradient(ellipse 110% 90% at 50% 50%,transparent 15%,rgba(0,0,0,.75) 100%)}
+.ov-top   {z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.82) 0%,transparent 32%)}
+.ov-bottom{z-index:2;background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,transparent 42%)}
+
+.topbar{position:relative;z-index:200;background:rgba(232,0,45,.97);height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;box-shadow:0 2px 28px rgba(232,0,45,.5)}
+.t-logo{font-family:var(--font-d);font-size:22px;font-weight:700;color:#fff;letter-spacing:-1px}
+.t-center{font-family:var(--font-b);font-size:10px;font-weight:600;color:rgba(255,255,255,.78);letter-spacing:5px}
+.t-right{font-family:var(--font-b);font-size:9px;font-weight:300;color:rgba(255,255,255,.45);letter-spacing:2px;display:flex;align-items:center;gap:6px}
+.ldot{width:5px;height:5px;border-radius:50%;background:#fff;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+
+.ribbon{position:relative;z-index:200;height:34px;overflow:hidden;background:rgba(0,0,0,.78);border-bottom:1px solid rgba(232,0,45,.2);backdrop-filter:blur(16px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.rib-in{display:flex;align-items:center;height:100%;animation:ribScroll 32s linear infinite;white-space:nowrap}
+@keyframes ribScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.rpill{display:inline-flex;align-items:center;gap:8px;padding:0 20px;height:100%;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0;position:relative}
+.rpill::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--tc);box-shadow:0 0 6px var(--tc)}
+.rpill-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.rpill-name{font-family:var(--font-b);font-size:9px;font-weight:700;letter-spacing:2.5px;color:rgba(255,255,255,.6);text-transform:uppercase}
+
+.sndbtn{position:fixed;bottom:40px;right:20px;z-index:300;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;box-shadow:0 4px 16px rgba(0,0,0,.5);user-select:none}
+.sndbtn:hover{background:rgba(232,0,45,.3);border-color:rgba(232,0,45,.5)}
+
+.main{position:relative;z-index:100;min-height:calc(100vh - 78px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px 50px}
+
+.hero{text-align:center;padding:0 16px 36px;width:100%;max-width:700px}
+.hero-ey{font-family:var(--font-b);font-size:10px;font-weight:600;color:rgba(232,0,45,.85);letter-spacing:6px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:12px}
+.hero-ey::before,.hero-ey::after{content:'';flex:1;max-width:50px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,0,45,.55))}
+.hero-ey::after{background:linear-gradient(90deg,rgba(232,0,45,.55),transparent)}
+.hero-t1{font-family:var(--font-d);font-size:clamp(48px,9vw,100px);font-weight:700;line-height:.9;letter-spacing:-3px;color:#fff;text-shadow:0 0 40px rgba(0,0,0,1),0 2px 6px rgba(0,0,0,1)}
+.hero-t2{display:block;font-family:var(--font-d);font-size:clamp(48px,9vw,100px);font-weight:700;line-height:.9;letter-spacing:-3px;color:#ffffff;text-shadow:0 0 20px rgba(232,0,45,1),0 0 50px rgba(232,0,45,.6),0 0 100px rgba(232,0,45,.25),0 2px 8px rgba(0,0,0,1);position:relative;margin-bottom:4px}
+.hero-t2::after{content:'';display:block;width:60%;margin:10px auto 0;height:3px;background:linear-gradient(90deg,transparent,var(--red),var(--red2),var(--red),transparent);box-shadow:0 0 16px var(--red),0 0 32px rgba(232,0,45,.35)}
+.hero-sub{font-family:var(--font-b);font-size:11px;font-weight:200;color:rgba(190,202,224,.45);letter-spacing:9px;text-transform:uppercase;margin-top:20px;text-shadow:0 1px 4px rgba(0,0,0,1)}
+
+.card{width:100%;max-width:760px;background:var(--panel);border:1px solid rgba(232,0,45,.15);border-radius:3px;position:relative;overflow:visible;backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 24px 80px rgba(0,0,0,.9),0 0 50px rgba(232,0,45,.04)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red) 35%,var(--red2) 65%,transparent);box-shadow:0 0 16px var(--red)}
+.c-hd{padding:17px 24px 14px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:10px}
+.c-hd-ic{width:26px;height:26px;background:rgba(232,0,45,.1);border:1px solid rgba(232,0,45,.28);display:flex;align-items:center;justify-content:center;font-size:11px}
+.c-hd-tx{font-family:var(--font-d);font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--cyan)}
+.c-hd-bg{margin-left:auto;font-family:var(--font-b);font-size:7px;font-weight:700;letter-spacing:2px;padding:3px 9px;background:rgba(232,0,45,.1);border:1px solid rgba(232,0,45,.22);color:rgba(232,110,130,.9)}
+.c-body{padding:22px 24px;overflow:visible;position:relative}
+
+.mlbl{font-family:var(--font-b);font-size:9px;font-weight:700;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.mlbl::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.04)}
+.mbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.mb{position:relative;padding:20px 18px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:all .22s;overflow:hidden;display:flex;flex-direction:column;gap:5px;border-radius:2px}
+.mb-sh{position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 55%);opacity:0;transition:opacity .22s}
+.mb:hover .mb-sh,.mb.act .mb-sh{opacity:1}
+.mb.act{border-color:rgba(232,0,45,.42);background:rgba(232,0,45,.05);box-shadow:0 0 18px rgba(232,0,45,.1),inset 0 1px 0 rgba(232,0,45,.1)}
+.mb-badge{position:absolute;top:9px;right:9px;font-family:var(--font-b);font-size:7px;font-weight:700;letter-spacing:2px;padding:2px 6px;background:rgba(232,0,45,.14);border:1px solid rgba(232,0,45,.28);color:rgba(255,90,110,.9);opacity:0;transition:opacity .22s}
+.mb.act .mb-badge{opacity:1}
+.mb-ic{font-size:18px;filter:grayscale(1) brightness(.45);transition:filter .22s}
+.mb:hover .mb-ic,.mb.act .mb-ic{filter:none}
+.mb-ti{font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(196,206,224,.4);transition:color .22s}
+.mb:hover .mb-ti,.mb.act .mb-ti{color:#fff}
+.mb-de{font-family:var(--font-b);font-size:10px;font-weight:300;color:var(--muted);transition:color .22s}
+.mb:hover .mb-de,.mb.act .mb-de{color:rgba(190,202,224,.5)}
+
+.popts{display:flex;flex-direction:column;gap:22px;max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
+.popts.vis{max-height:2000px;opacity:1;overflow:visible}
+.sdiv{display:flex;align-items:center;gap:10px;margin-bottom:0}
+.sdiv-l{flex:1;height:1px;background:rgba(255,255,255,.04)}
+.sdiv-t{font-family:var(--font-b);font-size:8px;font-weight:600;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
+
+.sg{display:flex;flex-direction:column;gap:10px}
+.slbl{font-family:var(--font-b);font-size:10px;font-weight:700;color:rgba(100,120,170,.8);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.spip{width:4px;height:4px;border-radius:50%;background:var(--red);box-shadow:0 0 5px var(--red)}
+.sw{position:relative}
+
+.st{width:100%;padding:18px 20px;background:rgba(10,12,28,.7);border:1px solid rgba(255,255,255,.12);color:var(--text);font-family:var(--font-b);font-size:15px;font-weight:600;letter-spacing:.5px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .25s;user-select:none;min-height:58px;border-radius:3px}
+.st:hover{border-color:rgba(0,212,255,.4);background:rgba(0,212,255,.04)}
+.st.open{border-color:rgba(0,212,255,.6);background:rgba(0,212,255,.06);box-shadow:0 0 0 1px rgba(0,212,255,.15);border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:rgba(0,212,255,.15)}
+.st .ph{color:rgba(80,95,130,.9);font-weight:300;font-size:14px}
+.sa{font-size:11px;color:var(--muted);transition:transform .28s cubic-bezier(.4,0,.2,1),color .2s;margin-left:12px;flex-shrink:0;width:24px;height:24px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.st.open .sa{transform:rotate(180deg);color:var(--cyan);background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.3)}
+
+.sdd{position:relative;left:0;right:0;background:rgba(6,7,18,.98);border:1px solid rgba(0,212,255,.3);border-top:none;z-index:10;max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .3s;opacity:0;box-shadow:0 20px 50px rgba(0,0,0,.95);backdrop-filter:blur(32px);border-bottom-left-radius:3px;border-bottom-right-radius:3px}
+.sdd.open{opacity:1}
+#modelDD.open{max-height:280px;overflow-y:auto}
+#raceDD.open{max-height:520px;overflow-y:auto}
+.sdd::-webkit-scrollbar{width:4px}
+.sdd::-webkit-scrollbar-track{background:rgba(255,255,255,.02)}
+.sdd::-webkit-scrollbar-thumb{background:rgba(232,0,45,.45);border-radius:2px}
+.sdd::-webkit-scrollbar-thumb:hover{background:rgba(232,0,45,.7)}
+
+.so{padding:14px 20px;font-family:var(--font-b);cursor:pointer;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,.06);transition:background .18s;min-height:64px;position:relative}
+.so:last-child{border-bottom:none}
+.so:hover:not(.dis){background:rgba(255,255,255,.05)}
+.so::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--red);transition:width .18s}
+.so:hover:not(.dis)::before{width:2px}
+.so.sel{background:rgba(232,0,45,.07)}
+.so.sel::before{width:3px}
+.so.dis{cursor:not-allowed;opacity:.55;pointer-events:none}
+.od{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.od.completed{background:var(--green);box-shadow:0 0 10px rgba(0,230,118,.8)}
+.od.prediction{background:var(--cyan);box-shadow:0 0 10px rgba(0,212,255,.8)}
+.od.not-ready{background:rgba(60,70,100,.8);border:1px solid rgba(90,100,140,.5)}
+.ob{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3px}
+.on{color:#eef2ff;letter-spacing:.3px;font-weight:700;font-size:13px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.on.gr{color:rgba(170,180,210,.7)!important;font-weight:400}
+.osub{font-size:11px;font-weight:300;color:rgba(130,145,175,.8);margin-top:4px;letter-spacing:.5px}
+.obg{font-family:var(--font-b);font-size:8px;font-weight:700;letter-spacing:2px;padding:5px 10px;flex-shrink:0;white-space:nowrap;border-radius:2px}
+.obg.completed{background:rgba(0,230,118,.08);color:#00e676;border:1px solid rgba(0,230,118,.28)}
+.obg.prediction{background:rgba(0,212,255,.08);color:#00d4ff;border:1px solid rgba(0,212,255,.28)}
+.obg.not-ready{background:rgba(28,36,60,.7);color:rgba(80,95,130,.8);border:1px solid rgba(60,70,100,.4)}
+#raceTr{min-height:62px;font-size:15px}
+#modelTr{min-height:58px}
+
+.cta{width:100%;padding:15px;margin-top:4px;background:linear-gradient(130deg,var(--red),var(--red2));border:none;cursor:pointer;font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#fff;position:relative;overflow:hidden;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:12px;border-radius:2px;box-shadow:0 4px 18px rgba(232,0,45,.28)}
+.cta::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-100%);transition:transform .55s}
+.cta:hover::before{transform:translateX(100%)}
+.cta:hover{box-shadow:0 6px 28px rgba(232,0,45,.55),0 0 36px rgba(232,0,45,.18)}
+.cta:disabled{background:rgba(28,36,60,.55);cursor:not-allowed;box-shadow:none;color:var(--muted)}
+.cta:disabled::before{display:none}
+
+.legend{display:flex;gap:22px;justify-content:center;padding:20px 0 8px;position:relative;z-index:1}
+.li{display:flex;align-items:center;gap:6px;font-family:var(--font-b);font-size:10px;font-weight:300;color:rgba(96,112,150,.7);letter-spacing:1px}
+.ld{width:6px;height:6px;border-radius:50%}
+.ld.completed{background:var(--green);box-shadow:0 0 5px var(--green)}
+.ld.prediction{background:var(--cyan);box-shadow:0 0 5px var(--cyan)}
+.ld.not-ready{background:rgba(56,64,96,.6)}
+
+.ticker{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(232,0,45,.97);height:28px;overflow:hidden;box-shadow:0 -2px 14px rgba(232,0,45,.3)}
+.ti{display:flex;align-items:center;height:100%;animation:ts 40s linear infinite;white-space:nowrap}
+@keyframes ts{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tit{font-family:var(--font-b);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.75);padding:0 22px;display:inline-flex;align-items:center;gap:7px}
+.tsep{width:3px;height:3px;background:rgba(255,255,255,.3);border-radius:50%}
+
+.toast{position:fixed;bottom:38px;left:50%;transform:translateX(-50%);background:rgba(2,2,10,.96);border:1px solid rgba(232,0,45,.22);border-left:3px solid var(--red);padding:10px 18px;font-family:var(--font-b);font-size:11px;color:var(--silver);z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;backdrop-filter:blur(16px);border-radius:2px;box-shadow:0 8px 32px rgba(0,0,0,.7)}
+.toast.show{opacity:1}
+
+/* ── UPDATE BUTTON ── */
+.upd-btn{width:100%;padding:11px;background:transparent;border:1px solid rgba(0,212,255,.28);cursor:pointer;font-family:var(--font-d);font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;justify-content:center;gap:10px;border-radius:2px;transition:all .22s}
+.upd-btn:hover{background:rgba(0,212,255,.07);border-color:rgba(0,212,255,.5)}
+.upd-btn:disabled{opacity:.45;cursor:not-allowed}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.upd-spin{display:inline-block;animation:spin 1s linear infinite}
+
+/* ── PROGRESS PANEL ── */
+#progressPanel{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .3s;background:rgba(4,6,16,.92);border:1px solid rgba(0,212,255,.15);border-top:none;border-radius:0 0 3px 3px}
+#progressLog{padding:10px 14px;max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:3px}
+#progressLog::-webkit-scrollbar{width:3px}
+#progressLog::-webkit-scrollbar-thumb{background:rgba(0,212,255,.3);border-radius:2px}
+
+/* progress item styles */
+.pl-item{font-family:var(--font-b);font-size:10px;color:rgba(170,185,215,.75);letter-spacing:.3px;line-height:1.6;display:flex;align-items:center;gap:6px}
+.pl-item.running{color:rgba(0,212,255,.85)}
+.pl-item.done   {color:rgba(0,230,118,.9)}
+.pl-item.error  {color:rgba(255,60,60,.9)}
+.pl-item.skip   {color:rgba(80,100,140,.7)}
+
+/* live timer badge */
+.pl-timer{font-family:var(--font-b);font-size:9px;color:var(--cyan);background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);padding:1px 6px;border-radius:2px;margin-left:auto;min-width:36px;text-align:center}
+
+/* spinner inside log */
+@keyframes spinSm{to{transform:rotate(360deg)}}
+.pl-spin{display:inline-block;animation:spinSm .8s linear infinite;font-style:normal;font-size:11px}
+
+/* error detail (collapsible) */
+.pl-err-detail{font-size:9px;color:rgba(255,120,120,.7);background:rgba(255,0,0,.05);border-left:2px solid rgba(255,60,60,.3);padding:4px 8px;margin-top:2px;margin-left:18px;word-break:break-all;line-height:1.5;display:none}
+.pl-err-detail.show{display:block}
+.pl-err-toggle{font-size:9px;color:rgba(255,60,60,.6);cursor:pointer;text-decoration:underline;margin-left:4px}
+.pl-err-toggle:hover{color:rgba(255,60,60,.9)}
+
+/* section header in log */
+.pl-section{font-family:var(--font-d);font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(0,212,255,.4);padding:6px 0 3px;border-bottom:1px solid rgba(0,212,255,.1);margin-bottom:3px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.hero{animation:fadeUp .7s .1s ease both}
+.card{animation:fadeUp .7s .22s ease both}
+.legend{animation:fadeIn .6s .4s ease both}
+</style>
+</head>
+<body>
+
+<div id="vid-bg">
+  <video id="bgvid" src="f1_bg.mp4" autoplay muted loop playsinline preload="auto"></video>
+</div>
+<div class="ov ov-dark"></div>
+<div class="ov ov-vign"></div>
+<div class="ov ov-top"></div>
+<div class="ov ov-bottom"></div>
+<div class="sndbtn" id="sndbtn" onclick="toggleSound()" title="Toggle sound">🔇</div>
+
+<div class="topbar">
+  <div class="t-logo">F1</div>
+  <div class="t-center">2026 Season · Prediction System</div>
+  <div class="t-right"><div class="ldot"></div>LIVE · BERLIN TIME</div>
+</div>
+
+<div class="ribbon"><div class="rib-in" id="ribbon"></div></div>
+
+<div class="main">
+  <div class="hero">
+    <div class="hero-ey">Formula One · World Championship · 2026</div>
+    <div class="hero-t1">RACE</div>
+    <span class="hero-t2">INTELLIGENCE</span>
+    <div class="hero-sub">Machine Learning · Prediction Platform</div>
+  </div>
+
+  <div class="card">
+    <div class="c-hd">
+      <div class="c-hd-ic">⚙</div>
+      <div class="c-hd-tx">Configure Dashboard</div>
+      <div class="c-hd-bg">2026 SEASON</div>
+    </div>
+    <div class="c-body">
+      <div class="mlbl">01 — Select Mode</div>
+      <div class="mbtns">
+        <div class="mb" id="btn-prediction" onclick="selMode('prediction')">
+          <div class="mb-sh"></div><div class="mb-badge">SELECTED</div>
+          <div class="mb-ic">🔮</div><div class="mb-ti">Prediction</div>
+          <div class="mb-de">Pre-race forecasts & driver rankings</div>
+        </div>
+        <div class="mb" id="btn-analysis" onclick="selMode('analysis')">
+          <div class="mb-sh"></div><div class="mb-badge">SELECTED</div>
+          <div class="mb-ic">📊</div><div class="mb-ti">Analysis</div>
+          <div class="mb-de">Post-race metrics & explanations</div>
+        </div>
+      </div>
+
+      <div class="popts" id="popts">
+        <div class="sdiv">
+          <div class="sdiv-l"></div>
+          <div class="sdiv-t">02 — Configure</div>
+          <div class="sdiv-l"></div>
+        </div>
+
+        <div class="sg">
+          <div class="slbl"><div class="spip"></div>ML Model</div>
+          <div class="sw">
+            <div class="st" id="modelTr" onclick="togDD('model')">
+              <span class="ph" id="modelDsp">Select ML Model</span><span class="sa">▼</span>
+            </div>
+            <div class="sdd" id="modelDD">
+              <div class="so" onclick="pickModel('xgboost','XGBoost Classifier')">
+                <div class="od completed"></div>
+                <div class="ob">
+                  <div class="on">XGBoost Classifier</div>
+                  <div class="osub">Gradient boosted trees · highest accuracy</div>
+                </div>
+              </div>
+              <div class="so" onclick="pickModel('random_forest','Random Forest')">
+                <div class="od completed"></div>
+                <div class="ob">
+                  <div class="on">Random Forest</div>
+                  <div class="osub">Ensemble decision trees · robust</div>
+                </div>
+              </div>
+              <div class="so" onclick="pickModel('logistic','Logistic Regression')">
+                <div class="od completed"></div>
+                <div class="ob">
+                  <div class="on">Logistic Regression</div>
+                  <div class="osub">Linear classifier · interpretable</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg">
+          <div class="slbl"><div class="spip"></div>Grand Prix</div>
+          <div class="sw">
+            <div class="st" id="raceTr" onclick="togDD('race')">
+              <span class="ph" id="raceDsp">Select Grand Prix</span><span class="sa">▼</span>
+            </div>
+            <div class="sdd" id="raceDD"></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:0">
+          <button class="upd-btn" id="updateBtn" onclick="runUpdate()">
+            <span id="updBtnTxt">↻ Update Race Data</span>
+          </button>
+          <div id="progressPanel">
+            <div id="progressLog"></div>
+          </div>
+        </div>
+
+        <button class="cta" id="ctaBtn" disabled onclick="launch()">
+          <span>Launch Dashboard</span><span>→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="li"><div class="ld completed"></div>Completed</div>
+    <div class="li"><div class="ld prediction"></div>Prediction Available</div>
+    <div class="li"><div class="ld not-ready"></div>Not Yet Available</div>
+  </div>
+</div>
+
+<div class="ticker"><div class="ti" id="ticker"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── VIDEO ── */
+let muted = true;
+const vid = document.getElementById('bgvid');
+vid.play().catch(() => {
+  showToast('▶ Click anywhere to start video');
+  document.addEventListener('click', () => vid.play(), {once:true});
+});
+function toggleSound(){
+  const btn=document.getElementById('sndbtn');
+  if(muted){vid.muted=false;vid.volume=0.6;btn.textContent='🔊';muted=false;showToast('🔊 Sound on');}
+  else{vid.muted=true;btn.textContent='🔇';muted=true;showToast('🔇 Muted');}
+}
+
+/* ── METADATA ── */
+const RACE_META={
+  "Australian Grand Prix":       {f:"🇦🇺",c:"Albert Park, Melbourne"},
+  "Chinese Grand Prix":          {f:"🇨🇳",c:"Shanghai International Circuit"},
+  "Japanese Grand Prix":         {f:"🇯🇵",c:"Suzuka Circuit"},
+  "Miami Grand Prix":            {f:"🇺🇸",c:"Miami International Autodrome"},
+  "Canadian Grand Prix":         {f:"🇨🇦",c:"Circuit Gilles Villeneuve"},
+  "Monaco Grand Prix":           {f:"🇲🇨",c:"Circuit de Monaco"},
+  "Barcelona-Catalunya GP":      {f:"🇪🇸",c:"Circuit de Barcelona-Catalunya"},
+  "Austrian Grand Prix":         {f:"🇦🇹",c:"Red Bull Ring, Spielberg"},
+  "British Grand Prix":          {f:"🇬🇧",c:"Silverstone Circuit"},
+  "Belgian Grand Prix":          {f:"🇧🇪",c:"Circuit de Spa-Francorchamps"},
+  "Hungarian Grand Prix":        {f:"🇭🇺",c:"Hungaroring, Budapest"},
+  "Dutch Grand Prix":            {f:"🇳🇱",c:"Circuit Zandvoort"},
+  "Italian Grand Prix":          {f:"🇮🇹",c:"Autodromo Nazionale di Monza"},
+  "Spanish Grand Prix (Madrid)": {f:"🇪🇸",c:"IFEMA Madrid Street Circuit"},
+  "Azerbaijan Grand Prix":       {f:"🇦🇿",c:"Baku City Circuit"},
+  "Singapore Grand Prix":        {f:"🇸🇬",c:"Marina Bay Street Circuit"},
+  "United States Grand Prix":    {f:"🇺🇸",c:"Circuit of the Americas"},
+  "Mexico City Grand Prix":      {f:"🇲🇽",c:"Autodromo Hermanos Rodriguez"},
+  "Brazilian Grand Prix":        {f:"🇧🇷",c:"Autodromo Jose Carlos Pace"},
+  "Las Vegas Grand Prix":        {f:"🇺🇸",c:"Las Vegas Strip Circuit"},
+  "Qatar Grand Prix":            {f:"🇶🇦",c:"Lusail International Circuit"},
+  "Abu Dhabi Grand Prix":        {f:"🇦🇪",c:"Yas Marina Circuit"},
+};
+const TEAMS=[
+  {n:'Mercedes',c:'#00d2be'},{n:'Red Bull',c:'#3671c6'},{n:'Ferrari',c:'#e8002d'},
+  {n:'McLaren',c:'#ff8000'},{n:'Alpine',c:'#0090ff'},{n:'Aston Martin',c:'#006f62'},
+  {n:'Williams',c:'#64c4ff'},{n:'Haas F1',c:'#b6babd'},{n:'Racing Bulls',c:'#5e8faa'},
+  {n:'Cadillac',c:'#8888ff'},{n:'Audi',c:'#cc0000'},
+];
+
+let curMode=null,curModel=null,curRace=null,curRaceName=null;
+let raceStatuses=[];
+
+/* ── API ── */
+async function loadRaceStatuses(model){
+  const dd=document.getElementById('raceDD');
+  dd.innerHTML='<div style="padding:18px 20px;color:var(--muted);font-size:12px;letter-spacing:1px">Loading races...</div>';
+  document.getElementById('raceTr').classList.remove('open');
+  dd.classList.remove('open');
+  try{
+    const res=await fetch('/api/races/status?model='+encodeURIComponent(model));
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    raceStatuses=await res.json();
+    buildRaceDD(raceStatuses);
+    buildTicker();
+  }catch(e){
+    dd.innerHTML='<div style="padding:18px 20px;color:var(--red);font-size:11px">❌ Failed to load — is Flask running at localhost:5000?</div>';
+  }
+}
+function fmtD(s){return new Date(s+':00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'Europe/Berlin'});}
+
+/* ── MODE ── */
+function selMode(m){
+  curMode=m;
+  document.getElementById('btn-prediction').classList.toggle('act',m==='prediction');
+  document.getElementById('btn-analysis').classList.toggle('act',m==='analysis');
+  document.getElementById('popts').classList.add('vis');
+  chkCTA();
+  showToast(m==='prediction'?'🔮 Prediction mode selected':'📊 Analysis mode selected');
+}
+
+/* ── DROPDOWN ── */
+let openDD=null;
+function togDD(w){
+  const tr=document.getElementById(w+'Tr'),dd=document.getElementById(w+'DD');
+  if(openDD===w){closeAll();return;}
+  closeAll();
+  tr.classList.add('open');dd.classList.add('open');
+  openDD=w;
+}
+function closeAll(){
+  ['model','race'].forEach(w=>{
+    const t=document.getElementById(w+'Tr'),d=document.getElementById(w+'DD');
+    if(t){t.classList.remove('open');d.classList.remove('open');}
+  });
+  openDD=null;
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.sw')&&!e.target.closest('#updateBtn')&&!e.target.closest('#progressPanel'))
+    closeAll();
+});
+
+function pickModel(v,l){
+  curModel=v;
+  const d=document.getElementById('modelDsp');d.textContent=l;d.className='';
+  document.querySelectorAll('#modelDD .so').forEach(o=>o.classList.remove('sel'));
+  event.currentTarget.classList.add('sel');
+  closeAll();
+  curRace=null;curRaceName=null;
+  const rd=document.getElementById('raceDsp');
+  rd.textContent='Select Grand Prix';rd.className='ph';
+  chkCTA();
+  loadRaceStatuses(v);
+}
+
+function buildRaceDD(statuses){
+  const dd=document.getElementById('raceDD');dd.innerHTML='';
+  statuses.forEach((r,i)=>{
+    const sRaw=r.status;
+    const sCss=sRaw.toLowerCase().replace('_','-');
+    const dis=sCss==='not-ready';
+    const meta=RACE_META[r.race]||{f:'🏁',c:'Unknown Circuit'};
+    const o=document.createElement('div');
+    o.className='so'+(dis?' dis':'');
+    if(!dis) o.onclick=()=>pickRace(i,r.race,sRaw);
+    const bl={completed:'COMPLETED',prediction:'PREDICTION','not-ready':'NOT READY'}[sCss]||'NOT READY';
+    o.innerHTML=`<div class="od ${sCss}"></div>
+      <div class="ob">
+        <div class="on ${dis?'gr':''}">${meta.f} ${r.race}</div>
+        <div class="osub">${meta.c} · Quali ends ${fmtD(r.quali_end)}</div>
+      </div>
+      <div class="obg ${sCss}">${bl}</div>`;
+    dd.appendChild(o);
+  });
+}
+
+function pickRace(i,raceName,status){
+  curRace=i;curRaceName=raceName;
+  const meta=RACE_META[raceName]||{f:'🏁'};
+  const d=document.getElementById('raceDsp');d.textContent=meta.f+' '+raceName;d.className='';
+  document.querySelectorAll('#raceDD .so').forEach((o,j)=>o.classList.toggle('sel',j===i));
+  closeAll();chkCTA();
+  if(status==='COMPLETED') showToast('✅ Race complete — predictions + metrics available');
+  if(status==='PREDICTION') showToast('🔮 Qualifying done — predictions available');
+}
+
+function chkCTA(){
+  document.getElementById('ctaBtn').disabled=!(curMode&&curModel&&curRace!==null);
+}
+function launch(){
+  if(!curMode||!curModel||curRaceName===null) return;
+  showToast('🚀 Loading '+curRaceName+'…');
+  setTimeout(()=>{
+    window.location.href='/dashboard?model='+encodeURIComponent(curModel)+'&race='+encodeURIComponent(curRaceName);
+  },300);
+}
+
+/* ════════════════════════════════════════════════
+   UPDATE BUTTON — with live timers + error details
+════════════════════════════════════════════════ */
+// Track active timers so we can stop them
+const activeTimers = {};
+// Track start times per race+step
+const stepStartTimes = {};
+
+async function runUpdate(){
+  const btn   = document.getElementById('updateBtn');
+  const txt   = document.getElementById('updBtnTxt');
+  const panel = document.getElementById('progressPanel');
+  const log   = document.getElementById('progressLog');
+
+  // Reset
+  Object.values(activeTimers).forEach(clearInterval);
+  Object.keys(activeTimers).forEach(k=>delete activeTimers[k]);
+  Object.keys(stepStartTimes).forEach(k=>delete stepStartTimes[k]);
+
+  btn.disabled=true;
+  txt.innerHTML='<span class="upd-spin">↻</span> Updating...';
+  panel.style.maxHeight='300px';
+  panel.style.opacity='1';
+  log.innerHTML='<div class="pl-section">PIPELINE STATUS</div><div class="pl-item">🔄 Connecting to server...</div>';
+
+  try{
+    const res=await fetch('/api/update',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:curModel||'random_forest'})
+    });
+    if(!res.ok) throw new Error('Server error HTTP '+res.status);
+
+    const reader=res.body.getReader();
+    const decoder=new TextDecoder();
+    let buf='';
+
+    while(true){
+      const {done,value}=await reader.read();
+      if(done) break;
+      buf+=decoder.decode(value,{stream:true});
+      const lines=buf.split('\n');
+      buf=lines.pop();
+      for(const line of lines){
+        if(line.startsWith('data: ')){
+          try{ handleEvent(JSON.parse(line.slice(6)),log); }catch(e){}
+        }
+      }
+    }
+  }catch(e){
+    // Stop all timers
+    Object.values(activeTimers).forEach(clearInterval);
+    addLogItem(log,'error',`❌ Connection error: ${e.message}`);
+  }
+
+  // Clean up any still-running timers
+  Object.values(activeTimers).forEach(clearInterval);
+  btn.disabled=false;
+  txt.innerHTML='↻ Update Race Data';
+  // Refresh dropdown
+  if(curModel) loadRaceStatuses(curModel);
+}
+
+function timerKey(race,step){ return race.replace(/\s/g,'_')+'_'+step; }
+
+function handleEvent(evt,log){
+  if(evt.type==='progress'){
+    const key   = timerKey(evt.race,evt.step);
+    const short = evt.race.replace(' Grand Prix',' GP');
+
+    if(evt.status==='running'){
+      // Record start time
+      stepStartTimes[key] = Date.now();
+
+      // Create log item with live timer
+      const itemId = 'pl-'+key;
+      const timerId= 'tm-'+key;
+      const item   = document.createElement('div');
+      item.className='pl-item running';
+      item.id=itemId;
+      item.innerHTML=`<span class="pl-spin">↻</span> <span>${short} — ${evt.step}</span><span class="pl-timer" id="${timerId}">0s</span>`;
+      log.appendChild(item);
+      log.scrollTop=log.scrollHeight;
+
+      // Start live timer
+      activeTimers[key]=setInterval(()=>{
+        const el=document.getElementById(timerId);
+        if(el){
+          const s=Math.floor((Date.now()-stepStartTimes[key])/1000);
+          el.textContent=s+'s';
+        }else{
+          clearInterval(activeTimers[key]);
+        }
+      },1000);
+
+    }else{
+      // Stop timer for this step
+      if(activeTimers[key]){
+        clearInterval(activeTimers[key]);
+        delete activeTimers[key];
+      }
+
+      const elapsed = evt.elapsed!=null ? evt.elapsed
+                    : stepStartTimes[key] ? Math.floor((Date.now()-stepStartTimes[key])/1000)
+                    : 0;
+      const itemId  = 'pl-'+key;
+      const existing= document.getElementById(itemId);
+
+      if(evt.status==='done'){
+        const html=`✅ <span>${short} — ${evt.step} done</span><span class="pl-timer" style="background:rgba(0,230,118,.1);border-color:rgba(0,230,118,.3);color:var(--green)">${elapsed}s</span>`;
+        if(existing){existing.className='pl-item done';existing.innerHTML=html;}
+        else addLogItem(log,'done',html);
+
+      }else if(evt.status==='already_done'){
+        const html=`✓ <span style="opacity:.6">${short} — ${evt.step} already up to date</span>`;
+        if(existing){existing.className='pl-item skip';existing.innerHTML=html;}
+        else addLogItem(log,'skip',html);
+
+      }else if(evt.status==='error'){
+        const errId='err-'+key+'-'+Date.now();
+        const snippet=(evt.msg||'Unknown error').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const html=`❌ <span>${short} — ${evt.step} failed</span>
+          <span class="pl-err-toggle" onclick="document.getElementById('${errId}').classList.toggle('show')">details</span>
+          <span class="pl-timer" style="background:rgba(255,60,60,.1);border-color:rgba(255,60,60,.3);color:#ff5555">${elapsed}s</span>`;
+        if(existing){existing.className='pl-item error';existing.innerHTML=html;}
+        else addLogItem(log,'error',html);
+        // Add collapsible error detail
+        const detail=document.createElement('div');
+        detail.className='pl-err-detail';
+        detail.id=errId;
+        detail.textContent=snippet;
+        log.appendChild(detail);
+      }
+      log.scrollTop=log.scrollHeight;
+    }
+
+  }else if(evt.type==='done'){
+    const item=document.createElement('div');
+    item.className='pl-item done';
+    item.style.cssText='font-weight:700;margin-top:8px;border-top:1px solid rgba(0,230,118,.15);padding-top:8px';
+    item.innerHTML='✅ '+evt.message;
+    log.appendChild(item);
+    log.scrollTop=log.scrollHeight;
+  }
+}
+
+function addLogItem(log,cls,html){
+  const d=document.createElement('div');
+  d.className='pl-item '+cls;
+  d.innerHTML=html;
+  log.appendChild(d);
+}
+
+/* ── RIBBON ── */
+function buildRibbon(){
+  document.getElementById('ribbon').innerHTML=[...TEAMS,...TEAMS].map(t=>
+    `<div class="rpill" style="--tc:${t.c}">
+       <div class="rpill-dot" style="background:${t.c};box-shadow:0 0 6px ${t.c}"></div>
+       <div class="rpill-name">${t.n}</div>
+     </div>`
+  ).join('');
+}
+
+/* ── TICKER ── */
+function buildTicker(){
+  const src=raceStatuses.length>0?raceStatuses:Object.keys(RACE_META).map(n=>({race:n,status:'NOT_READY'}));
+  const items=src.map(r=>{
+    const ic=r.status==='COMPLETED'?'✓':r.status==='PREDICTION'?'◉':'○';
+    const meta=RACE_META[r.race]||{f:''};
+    return`<span class="tit">${ic} ${meta.f} ${r.race}<span class="tsep"></span></span>`;
+  });
+  document.getElementById('ticker').innerHTML=[...items,...items].join('');
+}
+
+/* ── TOAST ── */
+let toastT;
+function showToast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>el.classList.remove('show'),2800);
+}
+
+buildRibbon();
+buildTicker();
+</script>
+</body>
+</html>
