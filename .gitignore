@@ -6,12 +6,24 @@ env/
 # Python cache
 __pycache__/
 *.py[cod]
+data/cache/
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
 
 # Environment files
 .env
+
+# Data files
+*.csv
+
+# Generated outputs
+output/prediction/logistic/
+output/prediction/random_forest/
+output/prediction/xgboost/
+output/analysis/logistic/
+output/analysis/random_forest/
+output/analysis/xgboost/
 
 # OS/editor files
 .DS_Store
