@@ -14,16 +14,9 @@ data/cache/
 # Environment files
 .env
 
-# Data files
+# Generated outputs — no CSVs or JSONs from outputs/
 outputs/**/*.csv
-
-# Generated outputs
-output/prediction/logistic/
-output/prediction/random_forest/
-output/prediction/xgboost/
-output/analysis/logistic/
-output/analysis/random_forest/
-output/analysis/xgboost/
+outputs/**/*.json
 
 # OS/editor files
 .DS_Store
