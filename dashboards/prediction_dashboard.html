@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 2026 — Predictions</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/prediction.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-logo" onclick="window.location.href='/'">F1</div>
+  <div class="tb-nav">
+    <div class="tb-nav-item" onclick="window.location.href='/season'">Season Overview</div>
+    <div class="tb-nav-item active">Predictions</div>
+    <div class="tb-nav-item" onclick="window.location.href='/driver-analysis'">Driver Analysis</div>
+  </div>
+  <div class="tb-right">
+    <div class="ldot"></div>
+    <span id="header-status">PREDICTION DASHBOARD · 2026</span>
+    <div class="race-select-wrap" id="header-race-select" style="display:none">
+      <div class="race-select-btn" onclick="toggleHeaderRaceDD()">
+        <span id="header-race-name">Select Race</span>
+        <span>▼</span>
+      </div>
+      <div class="dd-panel header-race-dd" id="header-race-dd"></div>
+    </div>
+  </div>
+</div>
+
+<div class="ribbon">
+  <div class="rib-in" id="ribbon-top"></div>
+</div>
+
+<!-- SELECTION VIEW -->
+<div class="hero-section" id="selection-view">
+  <div class="hero-inner">
+    <div class="hero-eye">🏎 F1 2026 SEASON</div>
+    <div class="hero-title">Race Predictions</div>
+    <div class="hero-sub">AI-POWERED WIN PROBABILITY</div>
+
+    <div class="select-card">
+      <div class="select-label">SELECT GRAND PRIX</div>
+      <div class="select-box" id="race-select-box" onclick="toggleRaceDD()">
+        <span id="selected-race">Select a race</span>
+        <span style="opacity:.7">▼</span>
+      </div>
+      <div class="dd-panel race-dropdown" id="race-dropdown"></div>
+      <button class="launch-btn" id="launch-btn" disabled onclick="openDashboard()">LAUNCH DASHBOARD →</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD VIEW -->
+<div class="dashboard-view" id="dashboard-view">
+  <div class="race-header">
+    <div class="rh-inner">
+      <div class="rh-round">🏎 2026 FIA FORMULA ONE WORLD CHAMPIONSHIP</div>
+      <div class="rh-name" id="dash-race-name">Loading...</div>
+    </div>
+  </div>
+
+  <div class="model-tabs">
+    <div class="model-tab active" onclick="showModel('xgboost', this)">XGBoost</div>
+    <div class="model-tab" onclick="showModel('random_forest', this)">Random Forest</div>
+    <div class="model-tab" onclick="showModel('logistic', this)">Logistic Regression</div>
+  </div>
+
+  <div class="content">
+    <div id="xgboost" class="model-panel">
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">ALL DRIVERS — WIN PROBABILITY</div>
+            <div class="panel-sub">RANKED</div>
+          </div>
+          <div class="loading" id="loading-xgboost">Loading…</div>
+          <div class="driver-bars" id="drivers-xgboost"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">FEATURE IMPORTANCE</div>
+            <div class="panel-sub" id="feat-model-label-xgboost">XGBOOST</div>
+          </div>
+          <div class="loading" id="loading-feat-xgboost">Loading…</div>
+          <div class="feat-bars" id="features-xgboost"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="random_forest" class="model-panel" style="display:none">
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">ALL DRIVERS — WIN PROBABILITY</div>
+            <div class="panel-sub">RANKED</div>
+          </div>
+          <div class="loading" id="loading-random_forest">Loading…</div>
+          <div class="driver-bars" id="drivers-random_forest"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">FEATURE IMPORTANCE</div>
+            <div class="panel-sub" id="feat-model-label-random_forest">RANDOM FOREST</div>
+          </div>
+          <div class="loading" id="loading-feat-random_forest">Loading…</div>
+          <div class="feat-bars" id="features-random_forest"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="logistic" class="model-panel" style="display:none">
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">ALL DRIVERS — WIN PROBABILITY</div>
+            <div class="panel-sub">RANKED</div>
+          </div>
+          <div class="loading" id="loading-logistic">Loading…</div>
+          <div class="driver-bars" id="drivers-logistic"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">FEATURE IMPORTANCE</div>
+            <div class="panel-sub" id="feat-model-label-logistic">LOGISTIC</div>
+          </div>
+          <div class="loading" id="loading-feat-logistic">Loading…</div>
+          <div class="feat-bars" id="features-logistic"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner" id="bottom-ticker"></div>
+</div>
+
+<script>
+const TEAM_COLORS = {
+  'Mercedes': '#00d2be', 'Red Bull Racing': '#3671c6', 'Ferrari': '#e8002d',
+  'McLaren': '#ff8000', 'Alpine': '#0090ff', 'Aston Martin': '#006f62',
+  'Williams': '#64c4ff', 'Haas F1 Team': '#b6babd', 'Racing Bulls': '#5e8faa',
+  'Cadillac': '#8888ff', 'Audi': '#cc0000'
+};
+
+const RIBBON_TEAMS = [
+  { n: 'MERCEDES', c: '#00d2be' }, { n: 'RED BULL', c: '#3671c6' },
+  { n: 'FERRARI', c: '#e8002d' }, { n: 'MCLAREN', c: '#ff8000' },
+  { n: 'ALPINE', c: '#0090ff' }, { n: 'ASTON MARTIN', c: '#006f62' },
+  { n: 'WILLIAMS', c: '#64c4ff' }, { n: 'HAAS F1', c: '#b6babd' },
+  { n: 'RACING BULLS', c: '#5e8faa' }, { n: 'CADILLAC', c: '#8888ff' },
+  { n: 'AUDI', c: '#cc0000' }
+];
+
+const RACE_META = {
+  "Australian Grand Prix":    { f: "🇦🇺", c: "Albert Park, Melbourne" },
+  "Chinese Grand Prix":       { f: "🇨🇳", c: "Shanghai International Circuit" },
+  "Japanese Grand Prix":      { f: "🇯🇵", c: "Suzuka Circuit" },
+  "Miami Grand Prix":         { f: "🇺🇸", c: "Miami International Autodrome" },
+  "Canadian Grand Prix":      { f: "🇨🇦", c: "Circuit Gilles Villeneuve" },
+  "Monaco Grand Prix":        { f: "🇲🇨", c: "Circuit de Monaco" },
+  "Barcelona Grand Prix":     { f: "🇪🇸", c: "Circuit de Barcelona-Catalunya", display: "Barcelona-Catalunya GP" },
+  "Austrian Grand Prix":      { f: "🇦🇹", c: "Red Bull Ring, Spielberg" },
+  "British Grand Prix":       { f: "🇬🇧", c: "Silverstone Circuit" },
+  "Belgian Grand Prix":       { f: "🇧🇪", c: "Circuit de Spa-Francorchamps" },
+  "Hungarian Grand Prix":     { f: "🇭🇺", c: "Hungaroring, Budapest" },
+  "Dutch Grand Prix":         { f: "🇳🇱", c: "Circuit Zandvoort" },
+  "Italian Grand Prix":       { f: "🇮🇹", c: "Autodromo Nazionale di Monza" },
+  "Spanish Grand Prix":       { f: "🇪🇸", c: "IFEMA Madrid Street Circuit", display: "Spanish Grand Prix (Madrid)" },
+  "Azerbaijan Grand Prix":    { f: "🇦🇿", c: "Baku City Circuit" },
+  "Singapore Grand Prix":     { f: "🇸🇬", c: "Marina Bay Street Circuit" },
+  "United States Grand Prix": { f: "🇺🇸", c: "Circuit of the Americas" },
+  "Mexico City Grand Prix":   { f: "🇲🇽", c: "Autodromo Hermanos Rodriguez" },
+  "São Paulo Grand Prix":     { f: "🇧🇷", c: "Autodromo Jose Carlos Pace", display: "Brazilian Grand Prix" },
+  "Las Vegas Grand Prix":     { f: "🇺🇸", c: "Las Vegas Strip Circuit" },
+  "Qatar Grand Prix":         { f: "🇶🇦", c: "Lusail International Circuit" },
+  "Abu Dhabi Grand Prix":     { f: "🇦🇪", c: "Yas Marina Circuit" }
+};
+
+let selectedRace = null;
+let raceData = [];
+let curModel = 'xgboost';
+
+function getTeamColor(team) {
+  return TEAM_COLORS[team] || TEAM_COLORS[team?.toUpperCase()] || '#8ea0c7';
+}
+
+function buildTopRibbon() {
+  const el = document.getElementById('ribbon-top');
+  if (!el) return;
+  el.innerHTML = [...RIBBON_TEAMS, ...RIBBON_TEAMS].map(t =>
+    `<div class="rpill" style="--tc:${t.c}">
+      <span class="rpill-dot" style="background:${t.c}"></span>
+      <span class="rpill-name">${t.n}</span>
+    </div>`
+  ).join('');
+}
+
+function buildBottomTicker() {
+  const el    = document.getElementById('bottom-ticker');
+  if (!el) return;
+  const races = (raceData && raceData.length) ? raceData.map(r => r.race) : [];
+  const items = [...races, ...races].map(name => {
+    const txt = String(name || '').toUpperCase();
+    return `<div class="ticker-item">${txt}<span class="ticker-sep"></span></div>`;
+  }).join('');
+  el.innerHTML = items || '<div class="ticker-item">F1 2026<span class="ticker-sep"></span></div><div class="ticker-item">PREDICTIONS<span class="ticker-sep"></span></div>';
+}
+
+async function init() {
+  buildTopRibbon();
+  await loadRaces();
+  buildBottomTicker();
+}
+
+async function loadRaces() {
+  try {
+    const res   = await fetch('/api/races/status?model=random_forest');
+    const races = await res.json();
+    raceData = (races || []);
+    buildRaceDropdowns();
+  } catch (e) { console.error(e); }
+}
+
+function fmtD(s) {
+  try { return new Date(String(s) + ':00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }); }
+  catch (e) { return ''; }
+}
+
+function buildRaceDropdowns() {
+  const dd       = document.getElementById('race-dropdown');
+  const headerDD = document.getElementById('header-race-dd');
+  dd.innerHTML = '';
+  headerDD.innerHTML = '';
+
+  raceData.forEach((r, i) => {
+    const meta        = RACE_META[r.race] || null;
+    const flag        = meta?.f || '🏁';
+    const circuit     = meta?.c || '';
+    const displayName = meta?.display || r.race;
+    const sRaw        = String(r.status || '').toUpperCase();
+    const sCss        = sRaw === 'COMPLETED' ? 'completed' : sRaw === 'PREDICTION' ? 'prediction' : 'not-ready';
+    const badgeTxt    = sRaw === 'COMPLETED' ? 'COMPLETED' : sRaw === 'PREDICTION' ? 'PREDICTION' : 'NOT READY';
+    const quali       = r.quali_end ? fmtD(r.quali_end) : '';
+    const sub         = circuit ? `${circuit}${quali ? ` · Quali ends ${quali}` : ''}` : (quali ? `Quali ends ${quali}` : '');
+    const isDisabled  = sCss === 'not-ready';
+
+    // Selection-view dropdown row
+    const item = document.createElement('div');
+    item.className = 'race-dd-row' + (isDisabled ? ' disabled' : '');
+    if (!isDisabled) item.onclick = () => selectRace(i, r.race);
+    item.innerHTML = `
+      <div class="status-dot ${sCss}"></div>
+      <div class="race-dd-body">
+        <div class="race-dd-name ${isDisabled ? 'muted' : ''}">${flag} ${displayName}</div>
+        <div class="race-dd-sub">${sub}</div>
+      </div>
+      <div class="status-badge ${sCss}">${badgeTxt}</div>
+    `;
+    dd.appendChild(item);
+
+    // Header dropdown row
+    const hItem = document.createElement('div');
+    hItem.className = 'race-dd-row' + (isDisabled ? ' disabled' : '');
+    if (!isDisabled) hItem.onclick = () => switchRace(i, r.race);
+    hItem.innerHTML = `
+      <div class="status-dot ${sCss}"></div>
+      <div class="race-dd-body">
+        <div class="race-dd-name ${isDisabled ? 'muted' : ''}">${flag} ${displayName}</div>
+        <div class="race-dd-sub">${sub}</div>
+      </div>
+      <div class="status-badge ${sCss}">${badgeTxt}</div>
+    `;
+    headerDD.appendChild(hItem);
+  });
+}
+
+function toggleRaceDD() {
+  document.getElementById('race-dropdown').classList.toggle('open');
+  document.getElementById('race-select-box').classList.toggle('open');
+}
+
+function selectRace(idx, name) {
+  selectedRace = name;
+  const meta        = RACE_META[name] || null;
+  const flag        = meta?.f || '🏁';
+  const displayName = meta?.display || name;
+  document.getElementById('selected-race').textContent = `${flag} ${displayName}`;
+  document.getElementById('launch-btn').disabled = false;
+  document.querySelectorAll('#race-dropdown .race-dd-row').forEach((el, i) => el.classList.toggle('active', i === idx));
+  document.getElementById('race-dropdown').classList.remove('open');
+  document.getElementById('race-select-box').classList.remove('open');
+}
+
+function toggleHeaderRaceDD() {
+  document.getElementById('header-race-dd').classList.toggle('open');
+}
+
+function switchRace(idx, name) {
+  selectedRace = name;
+  document.getElementById('header-race-name').textContent = name;
+  document.getElementById('dash-race-name').textContent   = name;
+  document.querySelectorAll('#header-race-dd .race-dd-row').forEach((el, i) => el.classList.toggle('active', i === idx));
+  document.getElementById('header-race-dd').classList.remove('open');
+  loadAllModels();
+}
+
+function openDashboard() {
+  if (!selectedRace) return;
+  document.getElementById('selection-view').style.display = 'none';
+  document.getElementById('dashboard-view').classList.add('active');
+  document.getElementById('header-race-select').style.display = 'block';
+  document.getElementById('header-race-name').textContent = selectedRace;
+  document.getElementById('dash-race-name').textContent   = selectedRace;
+  showModel(curModel, document.querySelector('.model-tab'));
+  loadAllModels();
+}
+
+function showModel(model, el) {
+  curModel = model;
+  document.querySelectorAll('.model-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.model-panel').forEach(p => p.style.display = 'none');
+  el.classList.add('active');
+  document.getElementById(model).style.display = 'block';
+}
+
+async function loadAllModels() {
+  await Promise.all([
+    loadModelData('xgboost'),
+    loadModelData('random_forest'),
+    loadModelData('logistic')
+  ]);
+}
+
+async function loadModelData(model) {
+  const loadingDrivers = document.getElementById(`loading-${model}`);
+  const loadingFeat    = document.getElementById(`loading-feat-${model}`);
+  const driversEl      = document.getElementById(`drivers-${model}`);
+  const featuresEl     = document.getElementById(`features-${model}`);
+
+  loadingDrivers.classList.add('active');
+  loadingFeat.classList.add('active');
+  driversEl.innerHTML  = '';
+  featuresEl.innerHTML = '';
+
+  try {
+    const res = await fetch(`/api/data?model=${encodeURIComponent(model)}&race=${encodeURIComponent(selectedRace)}`);
+    if (!res.ok) throw new Error('No data');
+    const data = await res.json();
+
+    const predictions = (data.predictions || []).map(r => ({
+      driver: r.driver,
+      team:   r.team,
+      prob:   parseFloat(r.pred_top3_prob) || 0
+    })).sort((a, b) => b.prob - a.prob);
+
+    const features = (data.feature_importance || []).map(r => ({
+      name:  r.feature,
+      value: parseFloat(r.value) || 0
+    })).sort((a, b) => b.value - a.value).slice(0, 15);
+
+    renderDrivers(driversEl, predictions);
+    renderFeatures(featuresEl, features);
+    loadingDrivers.classList.remove('active');
+    loadingFeat.classList.remove('active');
+  } catch (e) {
+    loadingDrivers.textContent = 'No data available.';
+    loadingFeat.textContent    = 'No data available.';
+    console.error(e);
+  }
+}
+
+function renderDrivers(container, drivers) {
+  if (!drivers.length) { container.innerHTML = '<div style="padding:14px;color:rgba(170,185,215,.55)">No driver data</div>'; return; }
+  const max = drivers[0].prob || 1;
+
+  drivers.forEach((d, i) => {
+    const c    = getTeamColor(d.team);
+    const pct  = (d.prob * 100);
+    const w    = ((d.prob / max) * 100).toFixed(1);
+    let rankTxt = `P${i + 1}`;
+    let trophy  = '';
+    if (i === 0) { trophy = '🏆'; rankTxt = 'P1'; }
+    if (i === 1) { trophy = '🥈'; rankTxt = 'P2'; }
+    if (i === 2) { trophy = '🥉'; rankTxt = 'P3'; }
+    const pctColor = i < 3 ? c : 'rgba(170,185,215,.55)';
+
+    const row = document.createElement('div');
+    row.className = 'dr-row';
+    row.innerHTML = `
+      <div class="dr-rank ${i < 3 ? 'top3' : ''}">${rankTxt}</div>
+      <div class="dr-name">
+        <span class="dr-trophy">${trophy}</span>
+        <span class="dr-dot" style="background:${c}"></span>
+        <span class="dr-code">${d.driver}</span>
+      </div>
+      <div class="dr-bar-wrap">
+        <div class="dr-bar-fill" style="width:${w}%;background:${c};opacity:${i < 3 ? 1 : .75}"></div>
+      </div>
+      <div class="dr-pct" style="color:${pctColor}">${pct.toFixed(1)}%</div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function renderFeatures(container, features) {
+  if (!features.length) { container.innerHTML = '<div style="padding:14px;color:rgba(170,185,215,.55)">No feature data</div>'; return; }
+  const max = features[0].value || 1;
+  features.forEach(f => {
+    const w   = ((Math.abs(f.value) / Math.abs(max)) * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'feat-row';
+    row.innerHTML = `
+      <div class="feat-name">${f.name}</div>
+      <div class="feat-bar-wrap"><div class="feat-bar-fill" style="width:${w}%"></div></div>
+      <div class="feat-val">${f.value.toFixed(3)}</div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.race-select-wrap')) document.getElementById('header-race-dd').classList.remove('open');
+  if (!e.target.closest('#race-select-box') && !e.target.closest('#race-dropdown')) {
+    document.getElementById('race-dropdown').classList.remove('open');
+    document.getElementById('race-select-box').classList.remove('open');
+  }
+});
+
+init();
+</script>
+</body>
+</html>

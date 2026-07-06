@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 2026 — Race Intelligence</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<div id="vid-bg">
+  <video id="bgvid" src="f1_bg.mp4" autoplay muted loop playsinline preload="auto"></video>
+</div>
+<div class="ov ov-dark"></div>
+<div class="ov ov-vign"></div>
+<div class="ov ov-top"></div>
+<div class="ov ov-bottom"></div>
+
+<button class="sound-btn" id="sound-btn" onclick="toggleSound()" title="Toggle sound">🔇</button>
+
+<div class="topbar">
+  <div class="tb-logo" onclick="window.location.href='/'">F1</div>
+  <div class="tb-nav">
+    <div class="tb-nav-item" onclick="window.location.href='/season'">Season Overview</div>
+    <div class="tb-nav-item" onclick="window.location.href='/predictions'">Predictions</div>
+    <div class="tb-nav-item" onclick="window.location.href='/driver-analysis'">Driver Analysis</div>
+  </div>
+  <div class="tb-actions">
+    <button class="hdr-upd-btn" id="update-btn" onclick="runUpdate()" title="Run update pipelines">
+      <span id="upd-btn-txt">↻ Update Race Data</span>
+    </button>
+    <div class="hdr-progress" id="progress-panel" aria-live="polite">
+      <div id="progress-log"></div>
+    </div>
+  </div>
+</div>
+
+<div class="ribbon">
+  <div class="rib-in" id="ribbon"></div>
+</div>
+
+<main class="main">
+  <div class="hero">
+    <div class="hero-eyebrow">Formula One · World Championship · 2026</div>
+    <div class="hero-t1">RACE</div>
+    <span class="hero-t2">INTELLIGENCE</span>
+    <div class="hero-sub">Machine Learning · Prediction Platform</div>
+  </div>
+</main>
+
+<div class="ticker">
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── VIDEO ── */
+let muted = true;
+const vid = document.getElementById('bgvid');
+vid.play().catch(() => {
+  showToast('▶ Click anywhere to start video');
+  document.addEventListener('click', () => vid.play(), { once: true });
+});
+
+function toggleSound() {
+  const btn = document.getElementById('sound-btn');
+  if (muted) {
+    vid.muted = false;
+    vid.volume = 0.6;
+    btn.textContent = '🔊';
+    muted = false;
+    showToast('🔊 Sound on');
+  } else {
+    vid.muted = true;
+    btn.textContent = '🔇';
+    muted = true;
+    showToast('🔇 Muted');
+  }
+}
+
+/* ── METADATA ── */
+const RACE_META = {
+  "Australian Grand Prix":       { f: "🇦🇺", c: "Albert Park, Melbourne" },
+  "Chinese Grand Prix":          { f: "🇨🇳", c: "Shanghai International Circuit" },
+  "Japanese Grand Prix":         { f: "🇯🇵", c: "Suzuka Circuit" },
+  "Miami Grand Prix":            { f: "🇺🇸", c: "Miami International Autodrome" },
+  "Canadian Grand Prix":         { f: "🇨🇦", c: "Circuit Gilles Villeneuve" },
+  "Monaco Grand Prix":           { f: "🇲🇨", c: "Circuit de Monaco" },
+  "Barcelona Grand Prix":        { f: "🇪🇸", c: "Circuit de Barcelona-Catalunya", display: "Barcelona-Catalunya GP" },
+  "Austrian Grand Prix":         { f: "🇦🇹", c: "Red Bull Ring, Spielberg" },
+  "British Grand Prix":          { f: "🇬🇧", c: "Silverstone Circuit" },
+  "Belgian Grand Prix":          { f: "🇧🇪", c: "Circuit de Spa-Francorchamps" },
+  "Hungarian Grand Prix":        { f: "🇭🇺", c: "Hungaroring, Budapest" },
+  "Dutch Grand Prix":            { f: "🇳🇱", c: "Circuit Zandvoort" },
+  "Italian Grand Prix":          { f: "🇮🇹", c: "Autodromo Nazionale di Monza" },
+  "Spanish Grand Prix":          { f: "🇪🇸", c: "IFEMA Madrid Street Circuit", display: "Spanish Grand Prix (Madrid)" },
+  "Azerbaijan Grand Prix":       { f: "🇦🇿", c: "Baku City Circuit" },
+  "Singapore Grand Prix":        { f: "🇸🇬", c: "Marina Bay Street Circuit" },
+  "United States Grand Prix":    { f: "🇺🇸", c: "Circuit of the Americas" },
+  "Mexico City Grand Prix":      { f: "🇲🇽", c: "Autodromo Hermanos Rodriguez" },
+  "São Paulo Grand Prix":        { f: "🇧🇷", c: "Autodromo Jose Carlos Pace", display: "Brazilian Grand Prix" },
+  "Las Vegas Grand Prix":        { f: "🇺🇸", c: "Las Vegas Strip Circuit" },
+  "Qatar Grand Prix":            { f: "🇶🇦", c: "Lusail International Circuit" },
+  "Abu Dhabi Grand Prix":        { f: "🇦🇪", c: "Yas Marina Circuit" },
+};
+
+const TEAMS = [
+  { n: 'Mercedes',     c: '#00d2be' }, { n: 'Red Bull',      c: '#3671c6' },
+  { n: 'Ferrari',      c: '#e8002d' }, { n: 'McLaren',       c: '#ff8000' },
+  { n: 'Alpine',       c: '#0090ff' }, { n: 'Aston Martin',  c: '#006f62' },
+  { n: 'Williams',     c: '#64c4ff' }, { n: 'Haas F1',       c: '#b6babd' },
+  { n: 'Racing Bulls', c: '#5e8faa' }, { n: 'Cadillac',      c: '#8888ff' },
+  { n: 'Audi',         c: '#cc0000' },
+];
+
+let raceStatuses = [];
+
+/* ── UPDATE PIPELINE ── */
+const activeTimers = {};
+const stepStartTimes = {};
+
+async function runUpdate() {
+  const btn   = document.getElementById('update-btn');
+  const txt   = document.getElementById('upd-btn-txt');
+  const panel = document.getElementById('progress-panel');
+  const log   = document.getElementById('progress-log');
+
+  Object.values(activeTimers).forEach(clearInterval);
+  Object.keys(activeTimers).forEach(k => delete activeTimers[k]);
+  Object.keys(stepStartTimes).forEach(k => delete stepStartTimes[k]);
+
+  btn.disabled = true;
+  txt.innerHTML = '<span class="hdr-upd-spin">↻</span> Updating...';
+  panel.classList.add('open');
+  log.innerHTML = '<div class="pl-section">PIPELINE STATUS</div><div class="pl-item">🔄 Connecting to server...</div>';
+
+  try {
+    const res = await fetch('/api/update', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'random_forest' })
+    });
+    if (!res.ok) throw new Error('Server error HTTP ' + res.status);
+
+    const reader  = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const lines = buf.split('\n');
+      buf = lines.pop();
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          try { handleEvent(JSON.parse(line.slice(6)), log); } catch (e) {}
+        }
+      }
+    }
+  } catch (e) {
+    Object.values(activeTimers).forEach(clearInterval);
+    addLogItem(log, 'error', `❌ Connection error: ${e.message}`);
+  }
+
+  Object.values(activeTimers).forEach(clearInterval);
+  btn.disabled = false;
+  txt.innerHTML = '↻ Update Race Data';
+}
+
+function timerKey(race, step) { return race.replace(/\s/g, '_') + '_' + step; }
+
+function handleEvent(evt, log) {
+  if (evt.type === 'progress') {
+    const key   = timerKey(evt.race, evt.step);
+    const meta  = RACE_META[evt.race] || {};
+    const short = (meta.display || evt.race).replace(' Grand Prix', ' GP');
+
+    if (evt.status === 'running') {
+      stepStartTimes[key] = Date.now();
+      const itemId  = 'pl-' + key;
+      const timerId = 'tm-' + key;
+      const item = document.createElement('div');
+      item.className = 'pl-item running';
+      item.id = itemId;
+      item.innerHTML = `<span class="pl-spin">↻</span> <span>${short} — ${evt.step}</span><span class="pl-timer" id="${timerId}">0s</span>`;
+      log.appendChild(item);
+      log.scrollTop = log.scrollHeight;
+
+      activeTimers[key] = setInterval(() => {
+        const el = document.getElementById(timerId);
+        if (el) {
+          el.textContent = Math.floor((Date.now() - stepStartTimes[key]) / 1000) + 's';
+        } else {
+          clearInterval(activeTimers[key]);
+        }
+      }, 1000);
+
+    } else {
+      if (activeTimers[key]) { clearInterval(activeTimers[key]); delete activeTimers[key]; }
+
+      const elapsed  = evt.elapsed != null ? evt.elapsed : stepStartTimes[key] ? Math.floor((Date.now() - stepStartTimes[key]) / 1000) : 0;
+      const itemId   = 'pl-' + key;
+      const existing = document.getElementById(itemId);
+
+      if (evt.status === 'done') {
+        const html = `✅ <span>${short} — ${evt.step} done</span><span class="pl-timer" style="background:rgba(0,230,118,.1);border-color:rgba(0,230,118,.3);color:var(--green)">${elapsed}s</span>`;
+        if (existing) { existing.className = 'pl-item done'; existing.innerHTML = html; }
+        else addLogItem(log, 'done', html);
+
+      } else if (evt.status === 'already_done') {
+        const html = `✓ <span style="opacity:.6">${short} — ${evt.step} already up to date</span>`;
+        if (existing) { existing.className = 'pl-item skip'; existing.innerHTML = html; }
+        else addLogItem(log, 'skip', html);
+
+      } else if (evt.status === 'error') {
+        const errId   = 'err-' + key + '-' + Date.now();
+        const snippet = (evt.msg || 'Unknown error').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const html    = `❌ <span>${short} — ${evt.step} failed</span>
+          <span class="pl-err-toggle" onclick="document.getElementById('${errId}').classList.toggle('show')">details</span>
+          <span class="pl-timer" style="background:rgba(255,60,60,.1);border-color:rgba(255,60,60,.3);color:#ff5555">${elapsed}s</span>`;
+        if (existing) { existing.className = 'pl-item error'; existing.innerHTML = html; }
+        else addLogItem(log, 'error', html);
+        const detail = document.createElement('div');
+        detail.className = 'pl-err-detail';
+        detail.id = errId;
+        detail.textContent = snippet;
+        log.appendChild(detail);
+      }
+      log.scrollTop = log.scrollHeight;
+    }
+
+  } else if (evt.type === 'done') {
+    const item = document.createElement('div');
+    item.className = 'pl-item done';
+    item.style.cssText = 'font-weight:700;margin-top:8px;border-top:1px solid rgba(0,230,118,.15);padding-top:8px';
+    item.innerHTML = '✅ ' + evt.message;
+    log.appendChild(item);
+    log.scrollTop = log.scrollHeight;
+  }
+}
+
+function addLogItem(log, cls, html) {
+  const d = document.createElement('div');
+  d.className = 'pl-item ' + cls;
+  d.innerHTML = html;
+  log.appendChild(d);
+}
+
+/* ── RIBBON ── */
+function buildRibbon() {
+  document.getElementById('ribbon').innerHTML = [...TEAMS, ...TEAMS].map(t =>
+    `<div class="rpill" style="--tc:${t.c}">
+       <div class="rpill-dot" style="background:${t.c};box-shadow:0 0 6px ${t.c}"></div>
+       <div class="rpill-name">${t.n}</div>
+     </div>`
+  ).join('');
+}
+
+/* ── TICKER ── */
+function buildTicker() {
+  const src   = raceStatuses.length > 0 ? raceStatuses : Object.keys(RACE_META).map(n => ({ race: n, status: 'NOT_READY' }));
+  const items = src.map(r => {
+    const ic   = r.status === 'COMPLETED' ? '✓' : r.status === 'PREDICTION' ? '◉' : '○';
+    const meta = RACE_META[r.race] || { f: '' };
+    return `<span class="ticker-item">${ic} ${meta.f} ${meta.display || r.race}<span class="ticker-sep"></span></span>`;
+  });
+  document.getElementById('ticker').innerHTML = [...items, ...items].join('');
+}
+
+/* ── TOAST ── */
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+/* ── CLOSE PROGRESS ON OUTSIDE CLICK ── */
+document.addEventListener('click', e => {
+  const panel = document.getElementById('progress-panel');
+  if (panel && panel.classList.contains('open') &&
+      !e.target.closest('#progress-panel') &&
+      !e.target.closest('#update-btn')) {
+    panel.classList.remove('open');
+  }
+});
+
+buildRibbon();
+buildTicker();
+</script>
+</body>
+</html>

@@ -1,11 +1,11 @@
 {
-    "rain_probability": 0.08,
+    "rain_probability": 0.02,
     "wet_track_flag": 0,
-    "temperature": 28.82,
-    "humidity": 71.6,
-    "wind_speed": 10.040000000000001,
-    "temperature_vs_baseline": -0.17999999999999972,
-    "humidity_vs_baseline": 13.599999999999994,
-    "wind_speed_vs_baseline": -5.959999999999999,
-    "rain_probability_vs_baseline": -0.16999999999999998
+    "temperature": 35.28,
+    "humidity": 38.6,
+    "wind_speed": 9.139999999999999,
+    "temperature_vs_baseline": 6.280000000000001,
+    "humidity_vs_baseline": -19.4,
+    "wind_speed_vs_baseline": -6.860000000000001,
+    "rain_probability_vs_baseline": -0.23
 }

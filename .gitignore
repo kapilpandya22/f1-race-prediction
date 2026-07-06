@@ -15,7 +15,7 @@ data/cache/
 .env
 
 # Data files
-*.csv
+outputs/**/*.csv
 
 # Generated outputs
 output/prediction/logistic/

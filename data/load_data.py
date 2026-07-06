@@ -17,18 +17,37 @@ def enable_cache(cache_dir: str = "data/cache") -> None:
 # SESSION LOADING
 # ---------------------------
 def safe_load_session(season, race_name, session_type, retries=3):
+
     for i in range(retries):
         try:
-            session = fastf1.get_session(season, race_name, session_type)
+            session = fastf1.get_session(
+                season,
+                race_name,
+                session_type
+            )
+
             session.load()
             return session
+
         except Exception as e:
-            print(f"⚠️ Retry {i+1} for {race_name} {session_type}")
+
+            print("\n========================")
+            print(f"Season: {season}")
+            print(f"Race: {race_name}")
+            print(f"Session: {session_type}")
+            print(f"Exception Type: {type(e)}")
+            print(f"Exception: {e}")
+            print("========================\n")
+
+            print(
+                f"⚠️ Retry {i+1} for {race_name} {session_type}"
+            )
+
             time.sleep(2)
 
-    raise RuntimeError(f"Failed to load session: {race_name} {session_type}")
-
-
+    raise RuntimeError(
+        f"Failed to load session: {race_name} {session_type}"
+    )
 
 
 # ---------------------------

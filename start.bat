@@ -4,20 +4,16 @@ echo   F1 2026 - Race Intelligence Dashboard
 echo ================================================
 cd /d %~dp0
 echo.
-echo Activating virtual environment...
-call .venv\Scripts\activate
-if errorlevel 1 (
-    echo ERROR: Could not activate venv
-    echo Try running: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-    pause
-    exit
-)
-echo.
 echo Checking dependencies...
 pip show flask >nul 2>&1
 if errorlevel 1 (
-    echo Installing Flask...
-    pip install flask flask-cors
+    echo Installing dependencies from requirements.txt...
+    pip install -r requirements.txt
+    if errorlevel 1 (
+        echo ERROR: Failed to install dependencies.
+        pause
+        exit
+    )
 )
 echo.
 echo Starting Flask server at http://localhost:5000

@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.8181818181818182,
+    "f1": 0.3333333333333333,
+    "auc": 0.8771929824561404,
+    "log_loss": 0.3595390144384631,
+    "brier": 0.11286344086034049,
+    "mrr": 0.4476190476190476,
+    "top3_accuracy": 0.3333333333333333,
+    "top3_recall": 0.3333333333333333,
+    "top3_precision": 0.3333333333333333,
+    "race": "Miami Grand Prix",
+    "season": 2026,
+    "has_ground_truth": true,
+    "model": "xgboost"
+}

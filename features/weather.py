@@ -57,7 +57,7 @@ TRACK_INFO = {
         "quali_hour_local": 16
     },
 
-    "Spanish Grand Prix": {
+    "Barcelona Grand Prix": {
         "coords": (41.5700, 2.2611),
         "race_hour_local": 15,
         "quali_hour_local": 16
@@ -101,7 +101,7 @@ TRACK_INFO = {
         "quali_hour_local": 16
     },
 
-    "Spanish Grand Prix (Madrid)": {
+    "Spanish Grand Prix": {
         "coords": (40.3723, -3.6197),
         "race_hour_local": 15,
         "quali_hour_local": 16
@@ -132,7 +132,7 @@ TRACK_INFO = {
         "quali_hour_local": 15
     },
 
-    "Brazilian Grand Prix": {
+    "São Paulo Grand Prix": {
         "coords": (-23.7036, -46.6997),
         "race_hour_local": 14,
         "quali_hour_local": 15
@@ -220,7 +220,7 @@ TRACK_WEATHER_BASELINES = {
         "rain_probability": 0.20
     },
 
-    "Spanish Grand Prix": {
+    "Barcelona Grand Prix": {
         "temperature": 27,
         "humidity": 55,
         "wind_speed": 15,
@@ -269,7 +269,7 @@ TRACK_WEATHER_BASELINES = {
         "rain_probability": 0.18
     },
 
-    "Spanish Grand Prix (Madrid)": {
+    "Spanish Grand Prix": {
         "temperature": 31,
         "humidity": 40,
         "wind_speed": 11,
@@ -304,7 +304,7 @@ TRACK_WEATHER_BASELINES = {
         "rain_probability": 0.18
     },
 
-    "Brazilian Grand Prix": {
+    "São Paulo Grand Prix": {
         "temperature": 26,
         "humidity": 72,
         "wind_speed": 15,

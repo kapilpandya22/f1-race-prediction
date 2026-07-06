@@ -79,7 +79,7 @@ TRACK_METADATA = {
         "turns": 19
     },
 
-    "Spanish Grand Prix": {
+    "Barcelona Grand Prix": {
         "country": "Spain",
         "circuit": "Circuit de Barcelona-Catalunya",
         "track_length_km": 4.657,
@@ -99,6 +99,17 @@ TRACK_METADATA = {
         "track_type": "Permanent",
         "overtaking_difficulty": "Easy",
         "turns": 10
+    },
+
+    "Emilia Romagna Grand Prix": {
+        "country": "Italy",
+        "circuit": "Autodromo Enzo e Dino Ferrari",
+        "track_length_km": 4.909,
+        "laps": 63,
+        "race_distance_km": 309.049,
+        "track_type": "Permanent",
+        "overtaking_difficulty": "Medium",
+        "turns": 19
     },
 
     "British Grand Prix": {
@@ -156,7 +167,7 @@ TRACK_METADATA = {
         "turns": 11
     },
 
-    "Spanish Grand Prix (Madrid)": {
+    "Spanish Grand Prix": {
         "country": "Spain",
         "circuit": "Madring",
         "track_length_km": 5.470,
@@ -200,7 +211,7 @@ TRACK_METADATA = {
         "turns": 20
     },
 
-    "Mexican Grand Prix": {
+    "Mexico City Grand Prix": {
         "country": "Mexico",
         "circuit": "Autodromo Hermanos Rodriguez",
         "track_length_km": 4.304,
@@ -211,7 +222,7 @@ TRACK_METADATA = {
         "turns": 17
     },
 
-    "Brazilian Grand Prix": {
+    "São Paulo Grand Prix": {
         "country": "Brazil",
         "circuit": "Interlagos",
         "track_length_km": 4.309,

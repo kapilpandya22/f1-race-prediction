@@ -1,0 +1,24 @@
+race,country,circuit,track_length_km,laps,race_distance_km,track_type,overtaking_difficulty,turns
+Australian Grand Prix,Australia,Albert Park Circuit,5.278,58,306.124,Street,Medium,14
+Chinese Grand Prix,China,Shanghai International Circuit,5.451,56,305.066,Permanent,Medium,16
+Japanese Grand Prix,Japan,Suzuka Circuit,5.807,53,307.471,Permanent,Medium,18
+Miami Grand Prix,United States,Miami International Autodrome,5.412,57,308.326,Street,Medium,19
+Canadian Grand Prix,Canada,Circuit Gilles Villeneuve,4.361,70,305.27,Permanent,Easy,14
+Monaco Grand Prix,Monaco,Circuit de Monaco,3.337,78,260.286,Street,Very Hard,19
+Barcelona Grand Prix,Spain,Circuit de Barcelona-Catalunya,4.657,66,307.236,Permanent,Hard,14
+Austrian Grand Prix,Austria,Red Bull Ring,4.318,71,306.452,Permanent,Easy,10
+Emilia Romagna Grand Prix,Italy,Autodromo Enzo e Dino Ferrari,4.909,63,309.049,Permanent,Medium,19
+British Grand Prix,United Kingdom,Silverstone Circuit,5.891,52,306.198,Permanent,Medium,18
+Belgian Grand Prix,Belgium,Spa-Francorchamps,7.004,44,308.052,Permanent,Medium,19
+Hungarian Grand Prix,Hungary,Hungaroring,4.381,70,306.63,Permanent,Very Hard,14
+Dutch Grand Prix,Netherlands,Circuit Zandvoort,4.259,72,306.648,Permanent,Hard,14
+Italian Grand Prix,Italy,Monza,5.793,53,306.72,Permanent,Easy,11
+Spanish Grand Prix,Spain,Madring,5.47,56,306.32,Street,Medium,22
+Azerbaijan Grand Prix,Azerbaijan,Baku City Circuit,6.003,51,306.049,Street,Medium,20
+Singapore Grand Prix,Singapore,Marina Bay Street Circuit,4.94,62,306.143,Street,Hard,19
+United States Grand Prix,United States,Circuit of the Americas,5.513,56,308.405,Permanent,Medium,20
+Mexico City Grand Prix,Mexico,Autodromo Hermanos Rodriguez,4.304,71,305.354,Permanent,Easy,17
+São Paulo Grand Prix,Brazil,Interlagos,4.309,71,305.879,Permanent,Medium,15
+Las Vegas Grand Prix,United States,Las Vegas Strip Circuit,6.201,50,309.958,Street,Easy,17
+Qatar Grand Prix,Qatar,Lusail International Circuit,5.419,57,308.611,Permanent,Medium,16
+Abu Dhabi Grand Prix,United Arab Emirates,Yas Marina Circuit,5.281,58,306.183,Permanent,Medium,16

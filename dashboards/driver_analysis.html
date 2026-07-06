@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 2026 — Driver Analysis</title>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/driver.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-logo" id="home-btn">F1</div>
+  <div class="tb-nav">
+    <div class="tb-nav-item" id="nav-season">Season Overview</div>
+    <div class="tb-nav-item" id="nav-pred">Predictions</div>
+    <div class="tb-nav-item active" id="nav-driver">Driver Analysis</div>
+    <div class="tb-nav-item" id="nav-team"></div>
+    <div class="tb-nav-item" id="nav-model"></div>
+  </div>
+  <div class="tb-right">
+    <span class="ldot"></span>
+    2026 SEASON · LIVE DATA
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <div>
+      <div class="ph-eyebrow">Driver analytics</div>
+      <div class="ph-title">Driver Analysis</div>
+      <div class="ph-sub">Select a driver to see KPIs, trends, and reliability.</div>
+    </div>
+    <div class="badge" id="season-badge">Loading…</div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="panel">
+    <div class="phead">
+      <div class="ptitle">Select Driver</div>
+      <div class="psub" id="strip-hint">—</div>
+    </div>
+    <div class="driver-strip" id="driver-strip"></div>
+  </div>
+
+  <div class="driver-grid">
+
+    <!-- SIDEBAR -->
+    <div class="panel sidebar">
+      <div class="drv-header">
+        <div class="drv-code" id="drv-code">—</div>
+        <div class="drv-name" id="drv-name">—</div>
+      </div>
+      <div class="drv-team" id="drv-team">—</div>
+
+      <div class="drv-img-wrap">
+        <img id="drv-img" class="drv-img" alt="Driver">
+      </div>
+
+      <div class="sep"></div>
+      <div class="sep"></div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <div class="badge" id="drv-rounds">Rounds: —</div>
+        <div class="badge" id="drv-reliability">Finished: —</div>
+      </div>
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div class="panel">
+      <div class="kpi-grid" style="grid-template-columns: repeat(8, 1fr);">
+        <div class="kcard" style="--ac: var(--cyan)">
+          <div class="kc-label">Points</div>
+          <div class="kc-val" id="k-points">—</div>
+        </div>
+        <div class="kcard" style="--ac: var(--silver)">
+          <div class="kc-label">Position</div>
+          <div class="kc-val" id="k-pos">—</div>
+        </div>
+        <div class="kcard" style="--ac: var(--gold)">
+          <div class="kc-label">Wins</div>
+          <div class="kc-val" id="k-wins">—</div>
+        </div>
+        <div class="kcard" style="--ac: var(--purple)">
+          <div class="kc-label">Podiums</div>
+          <div class="kc-val" id="k-pods">—</div>
+        </div>
+        <div class="kcard" style="--ac: var(--orange)">
+          <div class="kc-label">DNFs</div>
+          <div class="kc-val" id="k-dnfs">—</div>
+        </div>
+        <div class="kcard" style="--ac: var(--silver)">
+          <div class="kc-label">Avg grid position</div>
+          <div class="kc-val" id="s-avg-grid">—</div>
+        </div>
+        <div class="kcard" style="--ac: var(--green)">
+          <div class="kc-label">Avg finish position</div>
+          <div class="kc-val" id="s-avg-finish">—</div>
+        </div>
+        <div class="kcard" style="--ac: var(--cyan)">
+          <div class="kc-label">Consistency score</div>
+          <div class="kc-val" id="s-consistency">—</div>
+        </div>
+      </div>
+
+      <div class="charts">
+        <div class="panel chart-box">
+          <div class="phead chart-phead">
+            <div class="ptitle">1 · Points Progression</div>
+            <div class="psub">Line chart · X: Round · Y: Cumulative Points</div>
+          </div>
+          <canvas id="c-points"></canvas>
+        </div>
+
+        <div class="panel chart-box">
+          <div class="phead chart-phead">
+            <div class="ptitle">2 · Grid vs Finish Position</div>
+            <div class="psub">Dual line chart · X: Round · Y: Position</div>
+          </div>
+          <canvas id="c-grid-finish"></canvas>
+        </div>
+
+        <div class="panel chart-box">
+          <div class="phead chart-phead">
+            <div class="ptitle">4 · Reliability</div>
+            <div class="psub">Donut chart · Finished vs DNF</div>
+          </div>
+          <canvas id="c-reliability"></canvas>
+        </div>
+
+        <div class="panel chart-box">
+          <div class="phead chart-phead">
+            <div class="ptitle">3 · Position Gain/Loss Per Race</div>
+            <div class="psub">Bar chart · X: Race · Y: positions_gained</div>
+          </div>
+          <canvas id="c-gain"></canvas>
+        </div>
+      </div>
+
+      <div class="footer-note" id="graphs-info">
+        <div class="footer-note-grid">
+          <div><b>1. Points Progression</b> — Line chart · X: Round · Y: Cumulative Points.</div>
+          <div><b>2. Grid vs Finish Position</b> — Dual line chart · X: Round · Y: Position (Grid Position vs Finish Position).</div>
+          <div><b>3. Position Gain/Loss Per Race</b> — Bar chart · X: Race · Y: positions_gained (Green positive, Red negative).</div>
+          <div><b>4. Reliability Chart</b> — Donut chart using finished_race and dnf_flag (Finished vs DNF) showing reliability %.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/static/chat_widget.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+  /* ── FORMATTING HELPERS ── */
+  const fmt1   = v => (v === null || v === undefined || Number.isNaN(v)) ? '—' : (Math.round(v * 10) / 10).toFixed(1);
+  const fmtInt = v => (v === null || v === undefined || Number.isNaN(v)) ? '—' : String(Math.round(v));
+
+  const safeNum = (v, d = null) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : d;
+  };
+
+  function consistencyScoreFromPositions(posArr) {
+    const arr = (posArr || []).map(p => {
+      const n = safeNum(p, 20);
+      return (n === null || n === undefined) ? 20 : n;
+    });
+    if (!arr.length) return 0;
+    const mean   = arr.reduce((a, b) => a + b, 0) / arr.length;
+    const denom  = arr.length > 1 ? (arr.length - 1) : 1;
+    const std    = Math.sqrt(arr.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / denom);
+    return Math.max(0, Math.round((100 - std * 5) * 10) / 10);
+  }
+
+  /* ── STATE ── */
+  let DRIVER_RACES = [];
+  let DRIVER_STAND = [];
+
+  /* ── CHART INSTANCES ── */
+  let chPoints = null, chGridFinish = null, chReliability = null, chGain = null;
+
+  function destroyChart(ch) { if (ch) ch.destroy(); }
+
+  function baseChartOpts() {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { left: 14, right: 18, top: 10, bottom: 28 } },
+      animation: { duration: 650 },
+      plugins: {
+        legend: {
+          labels: {
+            color: 'rgba(235,242,255,.95)',
+            boxWidth: 10, boxHeight: 10, padding: 14,
+            font: { family: 'Formula1', size: 11, weight: '700' }
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(8,11,24,.96)',
+          borderColor: 'rgba(0,212,255,.25)',
+          borderWidth: 1,
+          titleColor: '#fff',
+          bodyColor: 'rgba(230,238,255,.92)',
+          titleFont: { family: 'Formula1', weight: '800' },
+          bodyFont:  { family: 'Formula1' }
+        }
+      },
+      scales: {
+        x: {
+          offset: true,
+          ticks: { color: 'rgba(210,223,255,.98)', font: { family: 'Formula1', size: 11, weight: '700' }, padding: 10, maxRotation: 0, autoSkip: true, autoSkipPadding: 18 },
+          grid:   { color: 'rgba(255,255,255,.05)' },
+          border: { color: 'rgba(255,255,255,.14)' }
+        },
+        y: {
+          ticks: { color: 'rgba(210,223,255,.98)', font: { family: 'Formula1', size: 11, weight: '700' }, padding: 10 },
+          grid:  { color: 'rgba(255,255,255,.05)' },
+          border:{ color: 'rgba(255,255,255,.14)' }
+        }
+      }
+    };
+  }
+
+  Chart.defaults.color              = 'rgba(210,223,255,.98)';
+  Chart.defaults.font.family        = 'Formula1';
+  Chart.defaults.font.size          = 11;
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.pointStyle    = 'rect';
+
+  function invertYScale() {
+    return {
+      reverse: true,
+      ticks:  { color: 'rgba(160,178,215,.9)', font: { family: 'Formula1', size: 10 } },
+      grid:   { color: 'rgba(255,255,255,.05)' }
+    };
+  }
+
+  function buildDriverStrip(drivers) {
+    const strip = document.getElementById('driver-strip');
+    strip.innerHTML = '';
+    drivers.forEach(d => {
+      const el = document.createElement('div');
+      el.className    = 'dpill';
+      el.textContent  = d;
+      el.dataset.driver = d;
+      el.onclick      = () => selectDriver(d);
+      strip.appendChild(el);
+    });
+    document.getElementById('strip-hint').textContent = `${drivers.length} drivers`;
+  }
+
+  function setActivePill(driver) {
+    document.querySelectorAll('.dpill').forEach(p => p.classList.toggle('active', p.dataset.driver === driver));
+  }
+
+  function computeStandingsPosition(driver) {
+    const sorted = [...DRIVER_STAND].sort((a, b) => (b.points - a.points) || (b.wins - a.wins));
+    const idx    = sorted.findIndex(x => x.driver === driver);
+    return idx >= 0 ? idx + 1 : null;
+  }
+
+  function driverSeasonStats(driver) {
+    const rows   = DRIVER_RACES.filter(r => r.driver === driver);
+    const races  = rows.length;
+    const team   = rows.find(r => r.team)?.team || (DRIVER_STAND.find(s => s.driver === driver)?.team || '');
+    const points = rows.reduce((a, r) => a + safeNum(r.points, 0), 0);
+    const wins   = rows.reduce((a, r) => a + (String(r.winner || '0') === '1' ? 1 : 0), 0);
+    const podiums= rows.reduce((a, r) => a + (String(r.podium  || '0') === '1' ? 1 : 0), 0);
+    const dnfs   = rows.reduce((a, r) => a + (String(r.dnf_flag|| '0') === '1' ? 1 : 0), 0);
+
+    const avg_grid = rows.reduce((a, r) => a + safeNum(r.grid_position, 0), 0) / (races || 1);
+    const fin      = rows.map(r => safeNum(r.position, null)).filter(v => v !== null);
+    const avg_finish = fin.length ? (fin.reduce((a, b) => a + b, 0) / fin.length) : null;
+
+    const positionsFilled = rows.map(r => (r.position === null || r.position === undefined || r.position === '' ? 20 : safeNum(r.position, 20)));
+    const consistency_score = consistencyScoreFromPositions(positionsFilled);
+
+    return { driver, team, races, points: Math.round(points * 10) / 10, wins, podiums, dnfs, avg_grid, avg_finish, consistency_score, finished: races - dnfs };
+  }
+
+  function driverRoundSeries(driver) {
+    const rows   = DRIVER_RACES.filter(r => r.driver === driver).sort((a, b) => safeNum(a.round, 0) - safeNum(b.round, 0));
+    const rounds = rows.map(r => safeNum(r.round, 0));
+    let cumul    = 0;
+    const cumulPts = rows.map(r => { cumul += safeNum(r.points, 0); return Math.round(cumul * 10) / 10; });
+    return {
+      rows,
+      rounds,
+      cumulPts,
+      grid:    rows.map(r => safeNum(r.grid_position, null)),
+      finish:  rows.map(r => safeNum(r.position, null)),
+      gain:    rows.map(r => safeNum(r.positions_gained, null)),
+      dnfFlag: rows.map(r => String(r.dnf_flag || '0') === '1')
+    };
+  }
+
+  const DRIVER_NAMES = {
+    "ALB": "Alexander Albon",    "ALO": "Fernando Alonso",
+    "ANT": "Andrea Kimi Antonelli", "BEA": "Oliver Bearman",
+    "BOR": "Gabriel Bortoleto", "BOT": "Valtteri Bottas",
+    "COL": "Franco Colapinto",  "GAS": "Pierre Gasly",
+    "HAD": "Isack Hadjar",      "HAM": "Lewis Hamilton",
+    "HUL": "Nico Hülkenberg",   "LAW": "Liam Lawson",
+    "LEC": "Charles Leclerc",   "LIN": "Linus Lundqvist",
+    "NOR": "Lando Norris",      "OCO": "Esteban Ocon",
+    "PER": "Sergio Pérez",      "PIA": "Oscar Piastri",
+    "RUS": "George Russell",    "SAI": "Carlos Sainz Jr.",
+    "STR": "Lance Stroll",      "VER": "Max Verstappen"
+  };
+
+  function renderSidebar(stats) {
+    document.getElementById('drv-code').textContent  = stats.driver || '—';
+    document.getElementById('drv-name').textContent  = DRIVER_NAMES[stats.driver] || '—';
+    document.getElementById('drv-team').textContent  = stats.team || '—';
+    document.getElementById('s-avg-grid').textContent   = fmt1(stats.avg_grid);
+    document.getElementById('s-avg-finish').textContent = stats.avg_finish === null ? '—' : fmt1(stats.avg_finish);
+    document.getElementById('s-consistency').textContent = fmt1(stats.consistency_score);
+    document.getElementById('drv-rounds').textContent    = `Rounds: ${fmtInt(stats.races)}`;
+    const rel = stats.races ? Math.round((stats.finished / stats.races) * 100) : 0;
+    document.getElementById('drv-reliability').textContent = `Finished: ${fmtInt(rel)}%`;
+  }
+
+  function renderKpis(stats) {
+    document.getElementById('k-points').textContent = fmtInt(stats.points);
+    document.getElementById('k-pos').textContent    = fmtInt(computeStandingsPosition(stats.driver));
+    document.getElementById('k-wins').textContent   = fmtInt(stats.wins);
+    document.getElementById('k-pods').textContent   = fmtInt(stats.podiums);
+    document.getElementById('k-dnfs').textContent   = fmtInt(stats.dnfs);
+  }
+
+  function renderCharts(driver) {
+    const { rounds, cumulPts, grid, finish, gain, rows } = driverRoundSeries(driver);
+    const labelsRounds = rounds.map(r => `R${r}`);
+    const labelsRace   = rows.map(r => (r.race || `R${r.round || ''}`).replace(' Grand Prix', ''));
+
+    destroyChart(chPoints);
+    chPoints = new Chart(document.getElementById('c-points'), {
+      type: 'line',
+      data: {
+        labels: labelsRounds,
+        datasets: [{ label: 'Cumulative points', data: cumulPts, borderColor: 'rgba(0,212,255,0.95)', backgroundColor: 'rgba(0,212,255,0.10)', fill: true, tension: 0.28, pointRadius: 2, pointHoverRadius: 4 }]
+      },
+      options: baseChartOpts()
+    });
+
+    destroyChart(chGridFinish);
+    chGridFinish = new Chart(document.getElementById('c-grid-finish'), {
+      type: 'line',
+      data: {
+        labels: labelsRounds,
+        datasets: [
+          { label: 'Grid position',   data: grid.map(v => v === null ? null : v),  borderColor: 'rgba(200,208,228,0.95)', backgroundColor: 'rgba(200,208,228,0.08)', fill: false, tension: 0.22, pointRadius: 2 },
+          { label: 'Finish position', data: finish.map(v => v === null ? 20 : v), borderColor: 'rgba(0,230,118,0.95)',   backgroundColor: 'rgba(0,230,118,0.06)',   fill: false, tension: 0.22, pointRadius: 2 }
+        ]
+      },
+      options: { ...baseChartOpts(), scales: { x: baseChartOpts().scales.x, y: invertYScale() } }
+    });
+
+    destroyChart(chReliability);
+    const finishedCt = rows.reduce((a, r) => a + ((String(r.finished_race || '0') === '1') ? 1 : 0), 0);
+    const dnfCt      = rows.reduce((a, r) => a + ((String(r.dnf_flag       || '0') === '1') ? 1 : 0), 0);
+    chReliability = new Chart(document.getElementById('c-reliability'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Finished', 'DNF'],
+        datasets: [{ data: [finishedCt, dnfCt], backgroundColor: ['rgba(0,230,118,0.65)', 'rgba(232,0,45,0.65)'], borderColor: ['rgba(0,230,118,0.95)', 'rgba(232,0,45,0.95)'], borderWidth: 1, hoverOffset: 4, cutout: '65%' }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend:  { position: 'bottom', labels: { color: 'rgba(230,238,255,.9)', font: { family: 'Formula1', size: 10, weight: '700' } } },
+          tooltip: baseChartOpts().plugins.tooltip
+        }
+      }
+    });
+
+    destroyChart(chGain);
+    const gainVals = gain.map(v => v === null ? 0 : v);
+    const colors   = gainVals.map(v => v >= 0 ? 'rgba(0,230,118,0.65)'  : 'rgba(232,0,45,0.65)');
+    const bcolors  = gainVals.map(v => v >= 0 ? 'rgba(0,230,118,0.95)'  : 'rgba(232,0,45,0.95)');
+    chGain = new Chart(document.getElementById('c-gain'), {
+      type: 'bar',
+      data: {
+        labels: labelsRace,
+        datasets: [{ label: 'positions_gained', data: gainVals, backgroundColor: colors, borderColor: bcolors, borderWidth: 1, borderRadius: 2 }]
+      },
+      options: {
+        ...baseChartOpts(),
+        scales: {
+          x: { ...baseChartOpts().scales.x, ticks: { ...baseChartOpts().scales.x.ticks, maxRotation: 35, minRotation: 0, autoSkip: true, autoSkipPadding: 26 } },
+          y: baseChartOpts().scales.y
+        },
+        plugins: {
+          ...baseChartOpts().plugins,
+          tooltip: {
+            ...baseChartOpts().plugins.tooltip,
+            callbacks: {
+              afterLabel: ctx => {
+                const rr = rows[ctx.dataIndex];
+                return `grid: ${rr?.grid_position ?? '—'}, finish: ${rr?.position ?? '—'}, status: ${rr?.status || ''}`;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  function setDriverImage(driver) {
+    const img = document.getElementById('drv-img');
+    if (!img) return;
+    const candidates = [
+      `/drivers/${driver}.png`, `/drivers/${driver}.jpg`,
+      `/drivers/${driver}.jpeg`, `/drivers/${driver}.webp`,
+      `/static/Driver/${driver}.png`, `/static/Driver/${driver}.jpg`,
+      `/static/Driver/${driver}.jpeg`, `/static/Driver/${driver}.webp`,
+    ];
+    let idx = 0;
+    const tryNext = () => {
+      if (idx >= candidates.length) { img.removeAttribute('src'); img.style.opacity = '0'; return; }
+      img.style.opacity = '0.001';
+      img.src = candidates[idx++];
+    };
+    img.onload  = () => { img.style.opacity = '1'; };
+    img.onerror = () => { tryNext(); };
+    tryNext();
+  }
+
+  function selectDriver(driver) {
+    setActivePill(driver);
+    setDriverImage(driver);
+    const stats = driverSeasonStats(driver);
+    renderSidebar(stats);
+    renderKpis(stats);
+    renderCharts(driver);
+  }
+
+  async function loadData() {
+    const seasonRes = await fetch('/api/season/data');
+    const season    = await seasonRes.json();
+
+    const done   = season?.season_stats?.races_done ?? 0;
+    const total  = season?.season_stats?.total_races ?? 22;
+    const leader = season?.season_stats?.leader ?? '';
+    const lp     = season?.season_stats?.leader_pts ?? 0;
+    document.getElementById('season-badge').textContent = `RACES: ${done}/${total} · LEADER: ${leader} (${lp} PTS)`;
+
+    let raceRows = [], standRows = [];
+
+    try {
+      const r1 = await fetch('/api/driver-analysis/data');
+      if (r1.ok) {
+        const payload = await r1.json();
+        raceRows  = payload.driver_race_stats  || [];
+        standRows = payload.driver_standings   || [];
+      }
+    } catch (e) { /* fallback below */ }
+
+    if (!raceRows.length) {
+      const sums = season?.race_summaries || [];
+      sums.forEach(s => {
+        (s.top10 || []).forEach(r => {
+          raceRows.push({
+            season: 2026, round: s.round, race: s.name,
+            driver: r.driver, team: r.team,
+            grid_position: r.grid, position: r.pos,
+            positions_gained: r.gained, points: r.pts,
+            winner: (r.pos === 1 ? 1 : 0), podium: (r.pos <= 3 ? 1 : 0),
+            finished_race: 1, dnf_flag: 0, status: r.status || 'finished'
+          });
+        });
+      });
+    }
+
+    DRIVER_RACES = raceRows.map(r => ({
+      ...r,
+      round:            safeNum(r.round, null),
+      grid_position:    safeNum(r.grid_position, null),
+      position:         safeNum(r.position, null),
+      positions_gained: safeNum(r.positions_gained, null),
+      points:           safeNum(r.points, 0),
+    }));
+
+    DRIVER_STAND = standRows.length
+      ? standRows.map(s => ({ ...s, points: safeNum(s.points, 0), wins: safeNum(s.wins, 0), podiums: safeNum(s.podiums, 0), dnfs: safeNum(s.dnfs, 0), races: safeNum(s.races, 0) }))
+      : (season.driver_standings || []).map(s => ({ driver: s.driver, team: s.team, points: s.pts, wins: s.wins, podiums: s.pods, dnfs: null, races: done }));
+
+    const drivers    = Array.from(new Set(DRIVER_RACES.map(r => r.driver).filter(Boolean))).sort();
+    buildDriverStrip(drivers);
+
+    const defaultDrv = (season?.season_stats?.leader && drivers.includes(season.season_stats.leader)) ? season.season_stats.leader : drivers[0];
+    selectDriver(defaultDrv);
+  }
+
+  /* ── NAV ── */
+  document.getElementById('home-btn').onclick   = () => window.location.href = '/';
+  document.getElementById('nav-season').onclick = () => window.location.href = '/season';
+  document.getElementById('nav-pred').onclick   = () => window.location.href = '/predictions';
+  document.getElementById('nav-driver').onclick = () => window.location.href = '/driver-analysis';
+  document.getElementById('nav-team').onclick   = () => window.location.href = '/team-analysis';
+  document.getElementById('nav-model').onclick  = () => window.location.href = '/model-analysis';
+
+  loadData();
+</script>
+</body>
+</html>

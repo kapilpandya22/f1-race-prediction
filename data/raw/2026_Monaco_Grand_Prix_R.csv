@@ -1,0 +1,23 @@
+driver,team,position,status,grid_position,points,dnf_flag
+ANT,Mercedes,1.0,finished,1.0,25.0,0
+HAM,Ferrari,2.0,finished,3.0,18.0,0
+HAD,Red Bull Racing,3.0,finished,5.0,15.0,0
+PIA,McLaren,4.0,finished,7.0,12.0,0
+LAW,Racing Bulls,5.0,finished,10.0,10.0,0
+LIN,Racing Bulls,6.0,finished,15.0,8.0,0
+GAS,Alpine,7.0,finished,9.0,6.0,0
+ALB,Williams,8.0,finished,11.0,4.0,0
+OCO,Haas F1 Team,9.0,finished,17.0,2.0,0
+ALO,Aston Martin,10.0,finished,21.0,1.0,0
+BOR,Audi,11.0,finished,16.0,0.0,0
+RUS,Mercedes,12.0,finished,6.0,0.0,0
+HUL,Audi,13.0,finished,13.0,0.0,0
+COL,Alpine,14.0,finished,14.0,0.0,0
+PER,Cadillac,15.0,finished,18.0,0.0,0
+SAI,Williams,,retired,12.0,0.0,1
+LEC,Ferrari,,retired,4.0,0.0,1
+STR,Aston Martin,,retired,22.0,0.0,1
+NOR,McLaren,,retired,8.0,0.0,1
+BEA,Haas F1 Team,,retired,19.0,0.0,1
+BOT,Cadillac,,retired,20.0,0.0,1
+VER,Red Bull Racing,,retired,2.0,0.0,1

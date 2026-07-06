@@ -1,0 +1,15 @@
+{
+    "accuracy": 0.9090909090909091,
+    "f1": 0.6666666666666666,
+    "auc": 0.9473684210526316,
+    "log_loss": 0.3148209282519676,
+    "brier": 0.10832386995423451,
+    "mrr": 0.3611111111111111,
+    "top3_accuracy": 0.6666666666666666,
+    "top3_recall": 0.6666666666666666,
+    "top3_precision": 0.6666666666666666,
+    "race": "British Grand Prix",
+    "season": 2026,
+    "has_ground_truth": true,
+    "model": "xgboost"
+}
