@@ -664,6 +664,34 @@ def api_update():
         mimetype='text/event-stream',
         headers={'Cache-Control': 'no-cache', 'X-Accel-Buffering': 'no'}
     )
+@app.route(
+    "/api/raceiq",
+    methods=["POST"]
+)
+def api_raceiq():
+
+    data = request.get_json()
+
+    question = data.get(
+        "question",
+        ""
+    )
+
+    session_id = data.get(
+        "session_id",
+        "dashboard"
+    )
+
+    answer = raceiq.ask(
+        question,
+        session_id
+    )
+
+    return jsonify(
+        {
+            "answer": answer
+        }
+    )
 
 @app.route('/api/run/metrics', methods=['POST'])
 def run_metrics_endpoint():

@@ -45,6 +45,61 @@
         color:var(--cg-chat-text);border-radius:8px;padding:6px 8px;font-size:12px}
       #cg-chat-body{padding:12px;color:var(--cg-chat-muted);font-size:12px;line-height:1.35}
       #cg-chat-body b{color:var(--cg-chat-text)}
+      #cg-chat-body{
+        display:flex;
+        flex-direction:column;
+        height:420px;
+        padding:0;
+      }
+      
+      #cg-chat-messages{
+        flex:1;
+        overflow-y:auto;
+        padding:12px;
+      }
+      
+      #cg-chat-input-row{
+        display:flex;
+        border-top:1px solid rgba(255,255,255,.08);
+      }
+      
+      #cg-chat-input{
+        flex:1;
+        background:#0c1020;
+        border:none;
+        color:white;
+        padding:12px;
+        outline:none;
+      }
+      
+      #cg-chat-send{
+        width:80px;
+        border:none;
+        cursor:pointer;
+        background:#e8002d;
+        color:white;
+      }
+      
+      .cg-user-msg{
+        margin:8px 0;
+        text-align:right;
+      }
+      
+      .cg-user-msg span{
+        display:inline-block;
+        background:#00d4ff22;
+        color:white;
+        padding:8px 10px;
+        border-radius:8px;
+      }
+      
+      .cg-bot-msg{
+        margin:8px 0;
+        background:#1a2340;
+        color:white;
+        padding:8px 10px;
+        border-radius:8px;
+      }
     `;
     document.head.appendChild(style);
   }
@@ -66,9 +121,30 @@
         <button id="cg-chat-close" type="button" aria-label="Close">Close</button>
       </div>
       <div id="cg-chat-body">
-        <b>Chat widget placeholder</b><br/>
-        You can wire this to your chatbot backend later.
+        
+      <div id="cg-chat-messages">
+
+      <div class="cg-bot-msg">
+        Welcome to RaceIQ. Ask me about predictions, drivers, models, or race results.
       </div>
+
+    </div>
+
+    <div id="cg-chat-input-row">
+
+      <input
+        id="cg-chat-input"
+        placeholder="Ask RaceIQ..."
+      />
+
+      <button id="cg-chat-send">
+        Send
+      </button>
+
+      </div>
+
+      </div>
+
     </div>
     <div id="cg-chat-fab" title="Chat" aria-label="Open chat" role="button" tabindex="0">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -81,7 +157,20 @@
   const panel = root.querySelector("#cg-chat-panel");
   const fab = root.querySelector("#cg-chat-fab");
   const closeBtn = root.querySelector("#cg-chat-close");
+  const messages =
+  root.querySelector(
+    "#cg-chat-messages"
+  );
 
+  const input =
+  root.querySelector(
+    "#cg-chat-input"
+  );
+
+  const sendBtn =
+  root.querySelector(
+    "#cg-chat-send"
+  );
   const setOpen = (open) => {
     panel.classList.toggle("open", open);
   };
@@ -96,7 +185,111 @@
     }
   });
   closeBtn.addEventListener("click", () => setOpen(false));
+  function appendUser(text){
 
+    messages.innerHTML += `
+      <div class="cg-user-msg">
+        <span>${text}</span>
+      </div>
+    `;
+  
+    messages.scrollTop =
+      messages.scrollHeight;
+  }
+  
+  function appendBot(text){
+  
+    messages.innerHTML += `
+      <div class="cg-bot-msg">
+        ${text}
+      </div>
+    `;
+  
+    messages.scrollTop =
+      messages.scrollHeight;
+  }
+  
+  async function sendMessage(){
+
+    const question =
+      input.value.trim();
+  
+    if(!question)
+      return;
+  
+    appendUser(question);
+  
+    input.value = "";
+  
+    try {
+  
+      const sessionId =
+        localStorage.getItem(
+          "raceiq_session"
+        ) ||
+        crypto.randomUUID();
+  
+      localStorage.setItem(
+        "raceiq_session",
+        sessionId
+      );
+  
+      const response =
+        await fetch(
+          "/api/raceiq",
+          {
+            method: "POST",
+  
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+  
+            body: JSON.stringify(
+              {
+                question:
+                  question,
+  
+                session_id:
+                  sessionId
+              }
+            )
+          }
+        );
+  
+      const data =
+        await response.json();
+  
+      appendBot(
+        data.answer
+      );
+  
+    }
+    catch(err){
+  
+      console.error(err);
+  
+      appendBot(
+        "RaceIQ is unavailable."
+      );
+    }
+  }
+  
+  sendBtn.addEventListener(
+    "click",
+    sendMessage
+  );
+  
+  input.addEventListener(
+    "keydown",
+    (e) => {
+  
+      if(e.key === "Enter"){
+  
+        sendMessage();
+      }
+    }
+  );
   // Close on ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") setOpen(false);
