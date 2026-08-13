@@ -3,6 +3,13 @@ import os
 import time
 import pandas as pd
 
+from features.weather import TRACK_INFO
+
+SPRINT_RACES = {
+    race for race, info in TRACK_INFO.items()
+    if "sprint_hour_local" in info
+}
+
 
 # ---------------------------
 # CACHE SETUP
@@ -189,6 +196,25 @@ def get_raw_race_results(session):
 
 
 # ---------------------------
+# SPRINT SESSION POINTS
+# ---------------------------
+def get_sprint_points(season: int, race_name: str) -> pd.DataFrame:
+    session = safe_load_session(season, race_name, "S")
+
+    if session.results is None or session.results.empty:
+        raise RuntimeError(f"Empty sprint data for {race_name}")
+
+    results = session.results.copy()
+
+    df = pd.DataFrame({
+        "driver": results["Abbreviation"],
+        "sprint_points": results["Points"]
+    })
+
+    return df
+
+
+# ---------------------------
 # FETCH & SAVE RACE
 # ---------------------------
 def fetch_and_store_race(season: int, race_name: str):
@@ -230,7 +256,18 @@ def fetch_and_store_race(season: int, race_name: str):
     df["winner"] = (df["position"] == 1).astype(int)
     df["finished_race"] = (df["dnf_flag"] == 0).astype(int)
     df["positions_gained"] = (df["grid_position"] - df["position"])
-    
+
+    # ---------------------------
+    # SPRINT POINTS (SPRINT WEEKENDS ONLY)
+    # ---------------------------
+    if race_name in SPRINT_RACES:
+        print(f"🏁 Fetching sprint results for {race_name}")
+        sprint_df = get_sprint_points(season, race_name)
+        df = df.merge(sprint_df, on="driver", how="left")
+        df["sprint_points"] = df["sprint_points"].fillna(0)
+    else:
+        df["sprint_points"] = 0
+
     # ---------------------------
     # REORDER COLUMNS
     # ---------------------------
@@ -245,6 +282,7 @@ def fetch_and_store_race(season: int, race_name: str):
             "position",
             "positions_gained",
             "points",
+            "sprint_points",
             "podium",
             "winner",
             "finished_race",

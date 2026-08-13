@@ -391,7 +391,7 @@ def season_data():
             d = r.get('driver', '').strip()
             if not d:
                 continue
-            pts = safe_float(r.get('points', '0'))
+            pts = safe_float(r.get('points', '0')) + safe_float(r.get('sprint_points', '0'))
             race_pts_map[d] = race_pts_map.get(d, 0) + pts
             driver_team[d] = r.get('team', '')
             if r.get('winner', '') == '1':
@@ -424,7 +424,7 @@ def season_data():
                 'driver': r.get('driver', ''),
                 'team':   r.get('team', ''),
                 'grid':   safe_int(r.get('grid_position', '0')),
-                'pts':    safe_int(r.get('points', '0')),
+                'pts':    safe_int(safe_float(r.get('points', '0')) + safe_float(r.get('sprint_points', '0'))),
                 'gained': safe_int(r.get('positions_gained', '0')),
                 'status': r.get('status', 'finished'),
             })
@@ -457,7 +457,7 @@ def season_data():
         for r in rows:
             t = r.get('team', '')
             if t:
-                con_pts_total[t] += safe_float(r.get('points', '0'))
+                con_pts_total[t] += safe_float(r.get('points', '0')) + safe_float(r.get('sprint_points', '0'))
 
     con_standings = sorted(
         [{'team': t, 'pts': round(con_pts_total[t], 1), 'wins': con_wins[t]}

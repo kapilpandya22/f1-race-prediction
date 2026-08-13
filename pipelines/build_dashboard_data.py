@@ -222,6 +222,7 @@ def build_driver_race_stats(df):
         "positions_gained",
 
         "points",
+        "sprint_points",
 
         "winner",
         "podium",
@@ -280,7 +281,11 @@ def main():
         df["team"]
         .replace(TEAM_MAP)
     )
-    
+
+    df["sprint_points"] = df.get("sprint_points", 0)
+    df["sprint_points"] = df["sprint_points"].fillna(0)
+    df["points"] = df["points"].fillna(0) + df["sprint_points"]
+
     build_driver_standings(df)
 
     build_constructor_standings(df)
