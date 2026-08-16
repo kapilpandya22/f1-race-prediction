@@ -1,0 +1,4 @@
+phase,training_data,training_season_races,training_records,test_races,test_records
+early,2023 + 2024,46,919,8,160
+mid,2023 + 2024 + 2025 R1-R8,54,1079,8,160
+late,2023 + 2024 + 2025 R1-R16,62,1239,8,160
