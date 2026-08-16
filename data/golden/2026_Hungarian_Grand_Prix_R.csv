@@ -1,0 +1,23 @@
+season,round,race,driver,team,grid_position,position,positions_gained,points,sprint_points,podium,winner,finished_race,dnf_flag,status
+2026,11,Hungarian Grand Prix,NOR,McLaren,1.0,1.0,0.0,25.0,0,1,1,1,0,finished
+2026,11,Hungarian Grand Prix,VER,Red Bull Racing,4.0,2.0,2.0,18.0,0,1,0,1,0,finished
+2026,11,Hungarian Grand Prix,ANT,Mercedes,7.0,3.0,4.0,15.0,0,1,0,1,0,finished
+2026,11,Hungarian Grand Prix,LEC,Ferrari,2.0,4.0,-2.0,12.0,0,0,0,1,0,finished
+2026,11,Hungarian Grand Prix,HAM,Ferrari,5.0,5.0,0.0,10.0,0,0,0,1,0,finished
+2026,11,Hungarian Grand Prix,HAD,Red Bull Racing,8.0,6.0,2.0,8.0,0,0,0,1,0,finished
+2026,11,Hungarian Grand Prix,RUS,Mercedes,6.0,7.0,-1.0,6.0,0,0,0,1,0,finished
+2026,11,Hungarian Grand Prix,LAW,Racing Bulls,11.0,8.0,3.0,4.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,HUL,Audi,10.0,9.0,1.0,2.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,LIN,Racing Bulls,9.0,10.0,-1.0,1.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,BOR,Audi,14.0,11.0,3.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,GAS,Alpine,12.0,12.0,0.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,STR,Aston Martin,20.0,13.0,7.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,ALO,Aston Martin,16.0,14.0,2.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,COL,Alpine,13.0,15.0,-2.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,OCO,Haas F1 Team,15.0,16.0,-1.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,ALB,Williams,19.0,17.0,2.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,SAI,Williams,18.0,18.0,0.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,BEA,Haas F1 Team,17.0,19.0,-2.0,0.0,0,0,0,1,0,lapped
+2026,11,Hungarian Grand Prix,PIA,McLaren,3.0,,,0.0,0,0,0,0,1,retired
+2026,11,Hungarian Grand Prix,PER,Cadillac,22.0,,,0.0,0,0,0,0,1,retired
+2026,11,Hungarian Grand Prix,BOT,Cadillac,21.0,,,0.0,0,0,0,0,1,retired

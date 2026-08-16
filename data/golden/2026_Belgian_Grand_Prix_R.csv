@@ -1,0 +1,23 @@
+season,round,race,driver,team,grid_position,position,positions_gained,points,sprint_points,podium,winner,finished_race,dnf_flag,status
+2026,10,Belgian Grand Prix,ANT,Mercedes,1.0,1.0,0.0,25.0,0,1,1,1,0,finished
+2026,10,Belgian Grand Prix,LEC,Ferrari,4.0,2.0,2.0,18.0,0,1,0,1,0,finished
+2026,10,Belgian Grand Prix,VER,Red Bull Racing,2.0,3.0,-1.0,15.0,0,1,0,1,0,finished
+2026,10,Belgian Grand Prix,HAM,Ferrari,5.0,4.0,1.0,12.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,PIA,McLaren,6.0,5.0,1.0,10.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,HAD,Red Bull Racing,21.0,6.0,15.0,8.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,NOR,McLaren,13.0,7.0,6.0,6.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,BOR,Audi,8.0,8.0,0.0,4.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,LIN,Racing Bulls,7.0,9.0,-2.0,2.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,COL,Alpine,11.0,10.0,1.0,1.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,GAS,Alpine,10.0,11.0,-1.0,0.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,LAW,Racing Bulls,9.0,12.0,-3.0,0.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,HUL,Audi,12.0,13.0,-1.0,0.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,BEA,Haas F1 Team,14.0,14.0,0.0,0.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,ALB,Williams,15.0,15.0,0.0,0.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,SAI,Williams,19.0,16.0,3.0,0.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,OCO,Haas F1 Team,16.0,17.0,-1.0,0.0,0,0,0,1,0,finished
+2026,10,Belgian Grand Prix,BOT,Cadillac,17.0,18.0,-1.0,0.0,0,0,0,1,0,lapped
+2026,10,Belgian Grand Prix,ALO,Aston Martin,22.0,19.0,3.0,0.0,0,0,0,1,0,lapped
+2026,10,Belgian Grand Prix,STR,Aston Martin,20.0,,,0.0,0,0,0,0,1,retired
+2026,10,Belgian Grand Prix,PER,Cadillac,18.0,,,0.0,0,0,0,0,1,retired
+2026,10,Belgian Grand Prix,RUS,Mercedes,3.0,,,0.0,0,0,0,0,1,retired
