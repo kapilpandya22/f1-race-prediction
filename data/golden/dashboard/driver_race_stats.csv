@@ -50,9 +50,9 @@ season,round,race,driver,team,grid_position,position,positions_gained,points,spr
 2026,7,Barcelona Grand Prix,PIA,McLaren,7.0,5.0,2.0,10.0,0.0,0,0,1,0,finished
 2026,7,Barcelona Grand Prix,HAD,Red Bull Racing,6.0,6.0,0.0,8.0,0.0,0,0,1,0,lapped
 2026,7,Barcelona Grand Prix,GAS,Alpine F1 Team,14.0,7.0,7.0,6.0,0.0,0,0,1,0,lapped
-2026,7,Barcelona Grand Prix,COL,Alpine F1 Team,13.0,8.0,5.0,4.0,0.0,0,0,1,0,lapped
-2026,7,Barcelona Grand Prix,LAW,RB F1 Team,8.0,9.0,-1.0,2.0,0.0,0,0,1,0,lapped
-2026,7,Barcelona Grand Prix,LIN,RB F1 Team,11.0,10.0,1.0,1.0,0.0,0,0,1,0,lapped
+2026,7,Barcelona Grand Prix,LAW,RB F1 Team,8.0,8.0,0.0,4.0,0.0,0,0,1,0,lapped
+2026,7,Barcelona Grand Prix,LIN,RB F1 Team,11.0,9.0,2.0,2.0,0.0,0,0,1,0,lapped
+2026,7,Barcelona Grand Prix,COL,Alpine F1 Team,13.0,10.0,3.0,1.0,0.0,0,0,1,0,lapped
 2026,7,Barcelona Grand Prix,BOR,Audi,12.0,11.0,1.0,0.0,0.0,0,0,1,0,lapped
 2026,7,Barcelona Grand Prix,SAI,Williams,16.0,12.0,4.0,0.0,0.0,0,0,1,0,lapped
 2026,7,Barcelona Grand Prix,OCO,Haas F1 Team,17.0,13.0,4.0,0.0,0.0,0,0,1,0,lapped
@@ -221,11 +221,11 @@ season,round,race,driver,team,grid_position,position,positions_gained,points,spr
 2026,4,Miami Grand Prix,HAD,Red Bull Racing,22.0,,,0.0,0.0,0,0,0,1,retired
 2026,6,Monaco Grand Prix,ANT,Mercedes,1.0,1.0,0.0,25.0,0.0,1,1,1,0,finished
 2026,6,Monaco Grand Prix,HAM,Ferrari,3.0,2.0,1.0,18.0,0.0,0,1,1,0,finished
-2026,6,Monaco Grand Prix,HAD,Red Bull Racing,5.0,3.0,2.0,15.0,0.0,0,1,1,0,finished
-2026,6,Monaco Grand Prix,PIA,McLaren,7.0,4.0,3.0,12.0,0.0,0,0,1,0,finished
-2026,6,Monaco Grand Prix,LAW,RB F1 Team,10.0,5.0,5.0,10.0,0.0,0,0,1,0,finished
-2026,6,Monaco Grand Prix,LIN,RB F1 Team,15.0,6.0,9.0,8.0,0.0,0,0,1,0,finished
-2026,6,Monaco Grand Prix,GAS,Alpine F1 Team,9.0,7.0,2.0,6.0,0.0,0,0,1,0,finished
+2026,6,Monaco Grand Prix,GAS,Alpine F1 Team,9.0,3.0,6.0,15.0,0.0,0,1,1,0,finished
+2026,6,Monaco Grand Prix,HAD,Red Bull Racing,5.0,4.0,1.0,12.0,0.0,0,0,1,0,finished
+2026,6,Monaco Grand Prix,PIA,McLaren,7.0,5.0,2.0,10.0,0.0,0,0,1,0,finished
+2026,6,Monaco Grand Prix,LAW,RB F1 Team,10.0,6.0,4.0,8.0,0.0,0,0,1,0,finished
+2026,6,Monaco Grand Prix,LIN,RB F1 Team,15.0,7.0,8.0,6.0,0.0,0,0,1,0,finished
 2026,6,Monaco Grand Prix,ALB,Williams,11.0,8.0,3.0,4.0,0.0,0,0,1,0,finished
 2026,6,Monaco Grand Prix,OCO,Haas F1 Team,17.0,9.0,8.0,2.0,0.0,0,0,1,0,finished
 2026,6,Monaco Grand Prix,ALO,Aston Martin,21.0,10.0,11.0,1.0,0.0,0,0,1,0,finished
